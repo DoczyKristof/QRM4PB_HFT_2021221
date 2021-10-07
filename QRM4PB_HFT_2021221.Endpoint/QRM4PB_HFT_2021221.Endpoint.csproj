@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Data\QRM4PB_HFT_2021221.Data.csproj" />
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Logic\QRM4PB_HFT_2021221.Logic.csproj" />
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Models\QRM4PB_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Repository\QRM4PB_HFT_2021221.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
