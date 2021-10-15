@@ -12,7 +12,7 @@ namespace QRM4PB_HFT_2021221.Client
 
             var res1 = cc.Cinemas.ToList();
 
-            var res2 = cc.Cinemas.Find(3).Name;
+            var res2 = cc.Cinemas.Find(1).Name;
             ;
         }
     }

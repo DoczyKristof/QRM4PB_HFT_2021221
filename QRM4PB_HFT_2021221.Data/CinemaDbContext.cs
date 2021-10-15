@@ -33,10 +33,39 @@ namespace QRM4PB_HFT_2021221.Data
         {
             Cinema ccArena = new Cinema() { Id = 1, Name = "Cinema City Aréna" };
             Cinema ccMamut = new Cinema() { Id = 2, Name = "Cinema City Mamut" };
-            Cinema marosMozi = new Cinema() { Id = 3, Name = "Maros Mozi" };
-            Cinema sugarMozi = new Cinema() { Id = 4, Name = "Sugár Mozi" };
+            //Cinema marosMozi = new Cinema() { Id = 3, Name = "Maros Mozi" };
+            //Cinema sugarMozi = new Cinema() { Id = 4, Name = "Sugár Mozi" };
 
-            modelBuilder.Entity<Cinema>().HasData(ccArena, ccMamut, marosMozi, sugarMozi);
+            Room ccArena1 = new Room() { Id = 1, CinemaId = 1, RoomNumber = 1 };
+            Room ccArena2 = new Room() { Id = 2, CinemaId = 1, RoomNumber = 2 };
+            Room ccArena3 = new Room() { Id = 3, CinemaId = 1, RoomNumber = 3 };
+            Room ccMamut1 = new Room() { Id = 4, CinemaId = 2, RoomNumber = 1 };
+            Room ccMamut2 = new Room() { Id = 5, CinemaId = 2, RoomNumber = 2 };
+
+
+            Movie movie1 = new Movie() { Id = 1, Title = "Anya" ,Price = 107, RoomId = 1 };
+            modelBuilder.Entity<Room>(entity =>
+            {
+                entity.HasOne(room => room.Cinema)
+                    .WithMany(cinema => cinema.Rooms)
+                    .HasForeignKey(room => room.CinemaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Movie>(entity =>
+            {
+                entity.HasOne(movie => movie.Room)
+                    .WithOne(room => room.Movie)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+
+
+            modelBuilder.Entity<Cinema>().HasData(ccArena, ccMamut/*, marosMozi, sugarMozi*/);
+            modelBuilder.Entity<Room>().HasData(ccArena1, ccArena2, ccArena3,
+                ccMamut1, ccMamut2);
+            modelBuilder.Entity<Movie>().HasData(movie1);
+
         }
 
 

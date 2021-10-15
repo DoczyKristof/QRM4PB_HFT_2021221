@@ -8,22 +8,21 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Models
 {
-    [Table("Cinemas")]
-    public class Cinema
+    [Table("Rooms")]
+    public class Room
     {
-        [Key] 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        
         [Required]
-        public string Name { get; set; }
+        public int RoomNumber { get; set; }
 
         [NotMapped]
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual Cinema Cinema { get; set; }
+        public int CinemaId { get; set; }
 
-        public Cinema()
-        {
-            Rooms = new HashSet<Room>();
-        }
-
+        [NotMapped]
+        public virtual Movie Movie { get; set; }
     }
 }
