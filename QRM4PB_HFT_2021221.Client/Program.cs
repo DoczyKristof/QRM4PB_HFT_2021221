@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QRM4PB_HFT_2021221.Data;
+using System;
+using System.Linq;
 
 namespace QRM4PB_HFT_2021221.Client
 {
@@ -6,7 +8,12 @@ namespace QRM4PB_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CinemaContext cc = new CinemaContext();
+
+            var res1 = cc.Cinemas.ToList();
+
+            var res2 = cc.Cinemas.Find(3).Name;
+            ;
         }
     }
 }

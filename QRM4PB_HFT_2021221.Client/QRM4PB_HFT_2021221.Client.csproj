@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -15,7 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Data\QRM4PB_HFT_2021221.Data.csproj" />
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Logic\QRM4PB_HFT_2021221.Logic.csproj" />
     <ProjectReference Include="..\QRM4PB_HFT_2021221.Models\QRM4PB_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Repository\QRM4PB_HFT_2021221.Repository.csproj" />
   </ItemGroup>
 
 </Project>
