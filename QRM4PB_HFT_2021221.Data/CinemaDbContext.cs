@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Data
 {
-    public class CinemaContext : DbContext
+    public class CinemaDbContext : DbContext
     {
         public virtual DbSet<Cinema> Cinemas { get; set; }
-        public CinemaContext()
+        public CinemaDbContext()
         {
             Database.EnsureCreated();
         }
 
-        public CinemaContext(DbContextOptions<CinemaContext> options)
+        public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
             :base(options){}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

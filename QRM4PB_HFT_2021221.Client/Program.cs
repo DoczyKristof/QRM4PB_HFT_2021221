@@ -8,7 +8,7 @@ namespace QRM4PB_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            CinemaContext cc = new CinemaContext();
+            CinemaDbContext cc = new CinemaDbContext();
 
             var res1 = cc.Cinemas.ToList();
 
