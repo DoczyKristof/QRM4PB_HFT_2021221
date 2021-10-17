@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Models
 {
+    public enum MovieType
+    {
+        Action, Comedy, Drama, Thriller, Fantasy, Horror, Mystery, Romance
+    }
+
     [Table("Movies")]
     public class Movie
     {
@@ -21,6 +26,8 @@ namespace QRM4PB_HFT_2021221.Models
         public int? Price { get; set; }
         [Required]
         public TimeSpan Length { get; set; }
+        [Required]
+        public MovieType Type { get; set; }
 
         [NotMapped]
         public virtual Room Room { get; set; }

@@ -10,6 +10,7 @@ namespace QRM4PB_HFT_2021221.Data
 {
     public class CinemaDbContext : DbContext
     {
+        //only one dbset, not sure it would be a problem in the future
         public virtual DbSet<Cinema> Cinemas { get; set; }
         public CinemaDbContext()
         {
@@ -36,14 +37,14 @@ namespace QRM4PB_HFT_2021221.Data
             //Cinema marosMozi = new Cinema() { Id = 3, Name = "Maros Mozi" };
             //Cinema sugarMozi = new Cinema() { Id = 4, Name = "Sugár Mozi" };
 
-            Room ccArena1 = new Room() { Id = 1, CinemaId = 1, RoomNumber = 1 };
-            Room ccArena2 = new Room() { Id = 2, CinemaId = 1, RoomNumber = 2 };
-            Room ccArena3 = new Room() { Id = 3, CinemaId = 1, RoomNumber = 3 };
-            Room ccMamut1 = new Room() { Id = 4, CinemaId = 2, RoomNumber = 1 };
-            Room ccMamut2 = new Room() { Id = 5, CinemaId = 2, RoomNumber = 2 };
+            Room ccArena1 = new Room() { Id = 1, CinemaId = ccArena.Id, RoomNumber = 1 };
+            Room ccArena2 = new Room() { Id = 2, CinemaId = ccArena.Id, RoomNumber = 2 };
+            Room ccArena3 = new Room() { Id = 3, CinemaId = ccArena.Id, RoomNumber = 3 };
+            Room ccMamut1 = new Room() { Id = 4, CinemaId = ccMamut.Id, RoomNumber = 1 };
+            Room ccMamut2 = new Room() { Id = 5, CinemaId = ccMamut.Id, RoomNumber = 2 };
 
 
-            Movie movie1 = new Movie() { Id = 1, Title = "Anya" ,Price = 107, RoomId = 1 };
+            Movie movie1 = new Movie() { Id = 1, Title = "Anya" ,Price = 107, RoomId = ccArena2.Id };
             modelBuilder.Entity<Room>(entity =>
             {
                 entity.HasOne(room => room.Cinema)
