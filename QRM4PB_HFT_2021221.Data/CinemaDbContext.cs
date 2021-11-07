@@ -10,8 +10,10 @@ namespace QRM4PB_HFT_2021221.Data
 {
     public class CinemaDbContext : DbContext
     {
-        //only one dbset, not sure it would be a problem in the future
         public virtual DbSet<Cinema> Cinemas { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+
         public CinemaDbContext()
         {
             Database.EnsureCreated();
