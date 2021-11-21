@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Repository
 {
-    public class MovieRepository
+    public class MovieRepository : IMovieRepository
     {
         CinemaDbContext context;
 
