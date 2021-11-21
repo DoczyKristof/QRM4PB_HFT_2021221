@@ -11,11 +11,29 @@ namespace QRM4PB_HFT_2021221.Logic
     class CinemaLogic
     {
 
-        ICinemaRe
+        ICinemaRepository repo;
 
-        public CinemaLogic(CinemaLogic)
+        public CinemaLogic(ICinemaRepository repo)
         {
+            this.repo = repo;
+        }
 
+        //CRUD
+        public void Create(Cinema cinema)
+        {
+            repo.Create(cinema);
+        }
+        public void Delete(int id)
+        {
+            repo.Delete(id);
+        }
+        public IQueryable<Cinema> ReadAll()
+        {
+            return repo.ReadAll();
+        }
+        public void Update(Cinema cinema)
+        {
+            repo.Update(cinema);
         }
     }
 }
