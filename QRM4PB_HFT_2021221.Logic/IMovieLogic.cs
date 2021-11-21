@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Logic
 {
-    interface IMovieLogic
+    public interface IMovieLogic
     {
         void Create(Movie movie);
         IQueryable<Movie> ReadAll();
         void Update(Movie movie);
         void Delete(int id);
-
-
         double AverageMoviePrice();
 
         IEnumerable<KeyValuePair<MovieType, double>>

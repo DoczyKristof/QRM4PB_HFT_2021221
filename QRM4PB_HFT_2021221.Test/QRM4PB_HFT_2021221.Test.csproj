@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QRM4PB_HFT_2021221.Logic\QRM4PB_HFT_2021221.Logic.csproj" />
+  </ItemGroup>
+
 </Project>
