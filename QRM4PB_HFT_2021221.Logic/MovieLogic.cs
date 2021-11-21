@@ -17,6 +17,22 @@ namespace QRM4PB_HFT_2021221.Logic
         {
             this.repo = repo;
         }
+        //NON CRUD
+        public double AveragePrice()
+        {
+            return repo
+                .ReadAll()
+                .Average(x => x.Price) ?? 0;
+        }
+
+        public IEnumerable<KeyValuePair<MovieType, double>> AveragePricesByTypes()
+        {
+            return repo
+                .ReadAll()
+                .GroupBy(x => x.Type)
+                .Select(x => new KeyValuePair<MovieType, double>(
+                   x.Key, x.Average(c => c.Price) ?? 0));
+        }
 
         //CRUD
         public void Create(Movie movie)
