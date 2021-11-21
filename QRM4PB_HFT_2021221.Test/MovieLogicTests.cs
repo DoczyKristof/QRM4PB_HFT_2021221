@@ -49,5 +49,36 @@ namespace QRM4PB_HFT_2021221.Test
             double avg = logic.AverageMoviePrice();
             Assert.That(avg, Is.EqualTo(2500));
         }
+
+        [Test]
+        public void CheckCreate()
+        {
+            Movie anya = new Movie()
+            {
+                Type = MovieType.Action,
+                Price = 3500
+            };
+
+            logic.Create(anya);
+            int num = logic.ReadAll().Count();
+
+            Assert.That(num == 0);
+        }
+
+        [Test]
+        public void CheckDelete()
+        {
+            int num1 = logic.ReadAll().Count();
+            logic.Delete(1);
+            int num2 = logic.ReadAll().Count();
+
+            Assert.That(num1 > num2);
+        }
+
+        [Test]
+        public void DontKnowYetItsgettinglate()
+        {
+            Assert.Pass();
+        }
     }
 }
