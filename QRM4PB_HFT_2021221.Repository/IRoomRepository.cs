@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Repository
 {
-    interface IRoomRepository
+    public interface IRoomRepository
     {
         void Create(Room room);
         Room ReadOne(int id); 

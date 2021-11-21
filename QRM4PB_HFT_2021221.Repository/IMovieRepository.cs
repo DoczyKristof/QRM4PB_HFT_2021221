@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Repository
 {
-    interface IMovieRepository
+    public interface IMovieRepository
     {
         void Create(Movie movie);
         Movie ReadOne(int id);

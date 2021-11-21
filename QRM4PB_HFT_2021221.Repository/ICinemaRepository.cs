@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Repository
 {
-    interface ICinemaRepository
+    public interface ICinemaRepository
     {
         void Create(Cinema cinema);
         Cinema ReadOne(int id);
