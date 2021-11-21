@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Logic
 {
-    public class MovieLogic
+    public class MovieLogic : IMovieLogic
     {
 
         IMovieRepository repo;
@@ -18,7 +18,7 @@ namespace QRM4PB_HFT_2021221.Logic
             this.repo = repo;
         }
         //NON CRUD
-        public double AveragePrice()
+        public double AverageMoviePrice()
         {
             return repo
                 .ReadAll()
