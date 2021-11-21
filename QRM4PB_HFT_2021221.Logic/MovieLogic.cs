@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Logic
 {
-    class MovieLogic
+    public class MovieLogic
     {
 
         IMovieRepository repo;
