@@ -23,6 +23,11 @@ namespace QRM4PB_HFT_2021221.Models
         public int CinemaId { get; set; }
 
         [NotMapped]
-        public virtual Movie Movie { get; set; }
+        public virtual ICollection<Movie> Movies { get; set; }
+
+        public Room()
+        {
+            Movies = new HashSet<Movie>();
+        }
     }
 }

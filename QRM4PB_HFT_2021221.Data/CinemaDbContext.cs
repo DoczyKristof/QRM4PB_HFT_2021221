@@ -35,33 +35,34 @@ namespace QRM4PB_HFT_2021221.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //cinemas
-            Cinema ccArena = new Cinema() { Name = "Cinema City Aréna" };
+            Cinema ccArena = new Cinema() { Id = 1, Name = "Cinema City Aréna" };
 
-            Cinema ccMamut = new Cinema() { Name = "Cinema City Mamut" };
+            Cinema ccMamut = new Cinema() { Id = 2, Name = "Cinema City Mamut" };
 
-            Cinema marosMozi = new Cinema() { Name = "Maros Mozi" };
+            Cinema marosMozi = new Cinema() { Id = 3, Name = "Maros Mozi" };
 
-            Cinema sugarMozi = new Cinema() { Name = "Sugár Mozi" };
+            Cinema sugarMozi = new Cinema() { Id = 4, Name = "Sugár Mozi" };
 
             //rooms
-            Room ccArena1 = new Room() { CinemaId = ccArena.Id, RoomNumber = 1 };
-            Room ccArena2 = new Room() { CinemaId = ccArena.Id, RoomNumber = 2 };
-            Room ccArena3 = new Room() { CinemaId = ccArena.Id, RoomNumber = 3 };
+            Room ccArena1 = new Room() { Id = 1, CinemaId = ccArena.Id, RoomNumber = 1 };
+            Room ccArena2 = new Room() { Id = 2, CinemaId = ccArena.Id, RoomNumber = 2 };
+            Room ccArena3 = new Room() { Id = 3, CinemaId = ccArena.Id, RoomNumber = 3 };
 
-            Room ccMamut1 = new Room() { CinemaId = ccMamut.Id, RoomNumber = 1 };
-            Room ccMamut2 = new Room() { CinemaId = ccMamut.Id, RoomNumber = 2 };
-            Room ccMamut3 = new Room() { CinemaId = ccMamut.Id, RoomNumber = 3 };
+            Room ccMamut1 = new Room() { Id = 4, CinemaId = ccMamut.Id, RoomNumber = 1 };
+            Room ccMamut2 = new Room() { Id = 5, CinemaId = ccMamut.Id, RoomNumber = 2 };
+            Room ccMamut3 = new Room() { Id = 6, CinemaId = ccMamut.Id, RoomNumber = 3 };
             
-            Room marosMozi1 = new Room() { CinemaId = marosMozi.Id, RoomNumber = 1 };
-            Room marosMozi2 = new Room() { CinemaId = marosMozi.Id, RoomNumber = 2 };
+            Room marosMozi1 = new Room() { Id = 7, CinemaId = marosMozi.Id, RoomNumber = 1 };
+            Room marosMozi2 = new Room() { Id = 8, CinemaId = marosMozi.Id, RoomNumber = 2 };
             
-            Room sugarMozi1 = new Room() { CinemaId = sugarMozi.Id, RoomNumber = 1 };
-            Room sugarMozi2 = new Room() { CinemaId = sugarMozi.Id, RoomNumber = 2 };
-            Room sugarMozi3 = new Room() { CinemaId = sugarMozi.Id, RoomNumber = 3 };
+            Room sugarMozi1 = new Room() { Id = 9, CinemaId = sugarMozi.Id, RoomNumber = 1 };
+            Room sugarMozi2 = new Room() { Id = 10, CinemaId = sugarMozi.Id, RoomNumber = 2 };
+            Room sugarMozi3 = new Room() { Id = 11, CinemaId = sugarMozi.Id, RoomNumber = 3 };
 
             //movies
             Movie movie1 = new Movie()
             {
+                Id = 1,
                 Title = "Marvel's Eternals",
                 Price = 2500,
                 Type = MovieType.Action,
@@ -70,6 +71,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie2 = new Movie()
             {
+                Id = 2,
                 Title = "Spider-Man No way home",
                 Price = 2500,
                 Type = MovieType.Action,
@@ -78,6 +80,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie3 = new Movie()
             {
+                Id = 3,
                 Title = "Red Notice",
                 Price = 1900,
                 Type = MovieType.Comedy,
@@ -86,6 +89,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie4 = new Movie()
             {
+                Id = 4,
                 Title = "Passing",
                 Price = 1690,
                 Type = MovieType.Drama,
@@ -94,6 +98,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie5 = new Movie()
             {
+                Id = 5,
                 Title = "Hive",
                 Price = 1890,
                 Type = MovieType.Drama,
@@ -102,6 +107,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie6 = new Movie()
             {
+                Id = 6,
                 Title = "A gift from Bob",
                 Price = 1290,
                 Type = MovieType.Drama,
@@ -110,6 +116,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie7 = new Movie()
             {
+                Id = 7,
                 Title = "Nightbooks",
                 Price = 0,
                 Type = MovieType.Horror,
@@ -118,6 +125,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie8 = new Movie()
             {
+                Id = 8,
                 Title = "Candyman",
                 Price = 0,
                 Type = MovieType.Horror,
@@ -126,6 +134,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie9 = new Movie()
             {
+                Id = 9,
                 Title = "Ghostbusters: Afterlife",
                 Price = 1490,
                 Type = MovieType.Fantasy,
@@ -134,6 +143,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie10 = new Movie()
             {
+                Id = 10,
                 Title = "Nagykarácsony",
                 Price = 1990,
                 Type = MovieType.Romance,
@@ -142,6 +152,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie11 = new Movie()
             {
+                Id = 11,
                 Title = "Venom: Let there be carnage",
                 Price = 0,
                 Type = MovieType.Action,
@@ -150,6 +161,7 @@ namespace QRM4PB_HFT_2021221.Data
             };
             Movie movie12 = new Movie()
             {
+                Id = 12,
                 Title = "King Richard",
                 Price = 1690,
                 Type = MovieType.Drama,
@@ -169,7 +181,8 @@ namespace QRM4PB_HFT_2021221.Data
             modelBuilder.Entity<Movie>(entity =>
             {
                 entity.HasOne(movie => movie.Room)
-                    .WithOne(room => room.Movie)
+                    .WithMany(room => room.Movies)
+                    .HasForeignKey(movie => movie.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
 

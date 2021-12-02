@@ -42,7 +42,7 @@ namespace QRM4PB_HFT_2021221.Repository
 
             old.RoomNumber = room.RoomNumber;
             old.CinemaId = room.CinemaId;
-            old.Movie = room.Movie;
+            old.Movies = room.Movies;
 
             context.SaveChanges();
         }

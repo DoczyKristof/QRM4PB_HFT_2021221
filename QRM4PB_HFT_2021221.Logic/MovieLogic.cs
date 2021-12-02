@@ -34,16 +34,16 @@ namespace QRM4PB_HFT_2021221.Logic
                    x.Key, x.Average(c => c.Price) ?? 0));
         }
 
-        /*
+        
         public IEnumerable<KeyValuePair<MovieType, int>> NumOfMoviesInTypes()
         {
             return repo
                 .ReadAll()
                 .GroupBy(x => x.Type)
                 .Select(x => new KeyValuePair<MovieType, int>(
-                   x.Key, *count titles*));
+                   x.Key, x.Count()));
         }
-        */
+ 
         //CRUD
         public void Create(Movie movie)
         {
