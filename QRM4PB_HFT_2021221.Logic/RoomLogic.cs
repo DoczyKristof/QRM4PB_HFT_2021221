@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Logic
 {
-    public class RoomLogic
+    public class RoomLogic : IRoomLogic
     {
         IRoomRepository repo;
 
