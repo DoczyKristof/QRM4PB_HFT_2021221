@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Logic
 {
-    interface ICinemaLogic
+    public interface ICinemaLogic
     {
         void Create(Cinema cinema);
         IQueryable<Cinema> ReadAll();
