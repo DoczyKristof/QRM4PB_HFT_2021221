@@ -1,7 +1,4 @@
-﻿using QRM4PB_HFT_2021221.Data;
-using QRM4PB_HFT_2021221.Logic;
-using QRM4PB_HFT_2021221.Models;
-using QRM4PB_HFT_2021221.Repository;
+﻿using QRM4PB_HFT_2021221.Models;
 using System;
 using System.Linq;
 
