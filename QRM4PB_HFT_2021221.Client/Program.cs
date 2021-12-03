@@ -10,8 +10,7 @@ namespace QRM4PB_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hjelp");
-
+            RestService service = new RestService();
         }
     }
 }

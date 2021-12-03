@@ -43,7 +43,9 @@ namespace QRM4PB_HFT_2021221.Logic
                 .Select(x => new KeyValuePair<MovieType, int>(
                    x.Key, x.Count()));
         }
- 
+
+
+
         //CRUD
         public void Create(Movie movie)
         {

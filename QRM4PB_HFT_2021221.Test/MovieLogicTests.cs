@@ -31,12 +31,12 @@ namespace QRM4PB_HFT_2021221.Test
                     new Movie(){ 
                         Type = MovieType.Comedy,
                         Price = 1500,
-                        Room = room1
+                        RoomId = room1.Id
                     },
                     new Movie(){
                         Type = MovieType.Action,
                         Price = 3500,
-                        Room = room1
+                        RoomId = room1.Id
                     }
                 }.AsQueryable());
             logic = new MovieLogic(mock.Object);
@@ -52,6 +52,23 @@ namespace QRM4PB_HFT_2021221.Test
         [Test]
         public void CheckCreate()
         {
+            int test = logic.ReadAll().Count();
+
+            Movie movie = new Movie()
+            {
+                Id = 3,
+                Type = MovieType.Fantasy,
+                Price = 620,
+                RoomId = 2
+            };
+
+            logic.Create(movie);
+            ;
+            int test2 = logic.ReadAll().Count();
+
+
+            Assert.That(test < test2);
+
         }
 
         [Test]

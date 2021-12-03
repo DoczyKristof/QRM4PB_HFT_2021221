@@ -19,6 +19,7 @@ namespace QRM4PB_HFT_2021221.Models
 
         [NotMapped]
         public virtual ICollection<Room> Rooms { get; set; }
+        public virtual Room Room { get; set; }
 
         public Cinema()
         {

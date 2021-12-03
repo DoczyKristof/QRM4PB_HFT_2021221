@@ -6,7 +6,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFT_FF_L08.Client
+namespace QRM4PB_HFT_2021221.Client
 {
     class RestService
     {

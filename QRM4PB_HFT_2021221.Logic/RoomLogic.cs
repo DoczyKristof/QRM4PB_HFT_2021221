@@ -34,5 +34,23 @@ namespace QRM4PB_HFT_2021221.Logic
         {
             repo.Update(room);
         }
+
+        //NON CRUD
+        public IEnumerable<string> CinemasThatHaveMovie()
+        {
+            return repo
+                .ReadAll()
+                .Where(x => x.Movies.Count() > 0)
+                .Select(x => x.Cinema.Name)
+                .Distinct();
+        }
+
+        public IEnumerable<Room> LeastIncome()
+        {
+            return repo
+                 .ReadAll()
+                 .Select(x => x)
+                 .Where(x => x.Movie.Price == x.Movies.Min(c => c.Price ?? 0));
+        }
     }
 }
