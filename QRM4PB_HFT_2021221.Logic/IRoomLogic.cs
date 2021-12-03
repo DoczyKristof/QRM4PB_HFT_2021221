@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Logic
 {
-    interface IRoomLogic
+    public interface IRoomLogic
     {
         void Create(Room room);
         IQueryable<Room> ReadAll();
