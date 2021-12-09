@@ -26,11 +26,37 @@ namespace QRM4PB_HFT_2021221.Test
                 {
                     new Cinema()
                     {
-                        Name = "Cinema"
+                        Name = "Cinema",
+                        Rooms =
+                        {
+                            new Room()
+                            {
+                                RoomNumber = 45,
+                                Id = 2
+                            },
+                            new Room()
+                            {
+                                RoomNumber = 65,
+                                Id = 3
+                            },
+                            new Room()
+                            {
+                                RoomNumber = 99,
+                                Id = 4
+                            }
+                        }
                     },
                     new Cinema()
                     {
-                        Name = "AnotherCinema"
+                        Name = "AnotherCinema",
+                        Rooms =
+                        {
+                            new Room()
+                            {
+                                RoomNumber = 4,
+                                Id = 1
+                            }
+                        }
                     }
                 }.AsQueryable());
 
@@ -52,6 +78,12 @@ namespace QRM4PB_HFT_2021221.Test
                 
             };
             Assert.Throws(typeof(Exception), () => logic.Create(cinema));
+        }
+        [Test]
+        public void CheckAvgCinemaSize()
+        {
+            int avg = logic.avgCinemaSize();
+            Assert.That(avg == 2);
         }
     }
 }

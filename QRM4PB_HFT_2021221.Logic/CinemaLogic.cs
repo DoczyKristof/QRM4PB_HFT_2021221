@@ -43,5 +43,14 @@ namespace QRM4PB_HFT_2021221.Logic
         {
             repo.Update(cinema);
         }
+        
+        //non crud
+        public int avgCinemaSize()
+        {
+            return (int)Math.Round(repo
+                .ReadAll()
+                .Average(x => x.Rooms.Count())
+                );
+        }
     }
 }

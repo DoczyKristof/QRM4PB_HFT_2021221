@@ -13,5 +13,6 @@ namespace QRM4PB_HFT_2021221.Logic
         IQueryable<Cinema> ReadAll();
         void Update(Cinema Cinema);
         void Delete(int id);
+        public int avgCinemaSize();
     }
 }
