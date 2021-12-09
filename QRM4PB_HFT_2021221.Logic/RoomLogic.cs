@@ -20,7 +20,15 @@ namespace QRM4PB_HFT_2021221.Logic
         //CRUD
         public void Create(Room room)
         {
-            repo.Create(room);
+            if (room.RoomNumber > 0)
+            {
+                repo.Create(room);
+            }
+            else
+            {
+                throw new Exception("Room number is required");
+            }
+            
         }
         public void Delete(int id)
         {
@@ -36,12 +44,20 @@ namespace QRM4PB_HFT_2021221.Logic
         }
 
         //NON CRUD
-        public IEnumerable<string> CinemasThatHaveMovie()
+        public IEnumerable<Cinema> CinemasThatHaveMovie()
         {
             return repo
                 .ReadAll()
                 .Where(x => x.Movies.Count() > 0)
-                .Select(x => x.Cinema.Name)
+                .Select(x => x.Cinema)
+                .Distinct();
+        }
+        public IEnumerable<Room> RoomsThatHaveMovie()
+        {
+            return repo
+                .ReadAll()
+                .Where(x => x.Movies.Count() > 0)
+                .Select(x => x)
                 .Distinct();
         }
 

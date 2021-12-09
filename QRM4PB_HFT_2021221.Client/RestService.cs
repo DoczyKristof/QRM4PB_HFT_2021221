@@ -28,9 +28,9 @@ namespace QRM4PB_HFT_2021221.Client
             {
                 client.GetAsync("").GetAwaiter().GetResult();
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException e)
             {
-                throw new ArgumentException("Endpoint is not available!");
+                throw new ArgumentException(/*"Endpoint is not available!"*/ e.Message);
             }
 
         }
@@ -92,5 +92,6 @@ namespace QRM4PB_HFT_2021221.Client
 
             response.EnsureSuccessStatusCode();
         }
+
     }
 }

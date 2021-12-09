@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QRM4PB_HFT_2021221.Endpoint
+namespace QRM4PB_HFT_2021221.Endpoint2
 {
     public class Startup
     {

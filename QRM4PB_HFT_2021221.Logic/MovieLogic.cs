@@ -49,7 +49,14 @@ namespace QRM4PB_HFT_2021221.Logic
         //CRUD
         public void Create(Movie movie)
         {
-            repo.Create(movie);
+            if (movie.Title != null)
+            {
+                repo.Create(movie);
+            }
+            else
+            {
+                throw new Exception("Title is required");
+            }
         }
         public void Delete(int id)
         {

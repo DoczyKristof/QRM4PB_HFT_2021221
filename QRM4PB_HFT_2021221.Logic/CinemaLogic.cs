@@ -21,7 +21,15 @@ namespace QRM4PB_HFT_2021221.Logic
         //CRUD
         public void Create(Cinema cinema)
         {
-            repo.Create(cinema);
+            if (cinema.Name != null)
+            {
+                repo.Create(cinema);
+            }
+            else
+            {
+                throw new Exception("Name is required");
+            }
+
         }
         public void Delete(int id)
         {

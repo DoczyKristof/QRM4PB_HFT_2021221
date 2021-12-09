@@ -52,29 +52,21 @@ namespace QRM4PB_HFT_2021221.Test
         [Test]
         public void CheckCreate()
         {
-            int test = logic.ReadAll().Count();
-
             Movie movie = new Movie()
             {
                 Id = 3,
                 Type = MovieType.Fantasy,
                 Price = 620,
                 RoomId = 2
-            };
-
-            logic.Create(movie);
-            ;
-            int test2 = logic.ReadAll().Count();
-
-
-            Assert.That(test < test2);
-
+            };       
+            Assert.Throws(typeof(Exception), () => logic.Create(movie));
         }
 
         [Test]
-        public void CheckDelete()
+        public void CheckReadAll()
         {
-
+            int count = logic.ReadAll().Count();
+            Assert.That(count == 2);
         }
     }
 }
