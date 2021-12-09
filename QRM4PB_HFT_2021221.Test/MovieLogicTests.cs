@@ -80,5 +80,12 @@ namespace QRM4PB_HFT_2021221.Test
             var result = logic.AveragePricesByTypes().ToList();
             Assert.That(result[0].Key.Equals(MovieType.Comedy) && result[0].Value.Equals(2000));
         }
+
+        [Test]
+        public void CheckNumOfMoviesInTypes()
+        {
+            var result = logic.NumOfMoviesInTypes().ToList();
+            Assert.That(result[1].Key.Equals(MovieType.Action) && result[1].Value.Equals(1));
+        }
     }
 }

@@ -17,5 +17,8 @@ namespace QRM4PB_HFT_2021221.Logic
 
         IEnumerable<KeyValuePair<MovieType, double>>
             AveragePricesByTypes();
+
+        public IEnumerable<KeyValuePair<MovieType, int>>
+            NumOfMoviesInTypes();
     }
 }
