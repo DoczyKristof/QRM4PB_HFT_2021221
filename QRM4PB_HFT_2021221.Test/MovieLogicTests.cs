@@ -34,6 +34,11 @@ namespace QRM4PB_HFT_2021221.Test
                         RoomId = room1.Id
                     },
                     new Movie(){
+                        Type = MovieType.Comedy,
+                        Price = 2500,
+                        RoomId = room1.Id
+                    },
+                    new Movie(){
                         Type = MovieType.Action,
                         Price = 3500,
                         RoomId = room1.Id
@@ -66,7 +71,14 @@ namespace QRM4PB_HFT_2021221.Test
         public void CheckReadAll()
         {
             int count = logic.ReadAll().Count();
-            Assert.That(count == 2);
+            Assert.That(count == 3);
+        }
+
+        [Test]
+        public void CheckAveragePricesByTypes()
+        {
+            var result = logic.AveragePricesByTypes().ToList();
+            Assert.That(result[0].Key.Equals(MovieType.Comedy) && result[0].Value.Equals(2000));
         }
     }
 }
