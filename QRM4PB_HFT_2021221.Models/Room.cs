@@ -25,8 +25,9 @@ namespace QRM4PB_HFT_2021221.Models
         public int CinemaId { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
         public virtual ICollection<Movie> Movies { get; set; }
+        [NotMapped]
+        [JsonIgnore]
         public virtual Movie Movie { get; set; }
         public Room()
         {

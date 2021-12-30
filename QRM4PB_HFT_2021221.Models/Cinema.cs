@@ -19,9 +19,8 @@ namespace QRM4PB_HFT_2021221.Models
         public string Name { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual ICollection<Room> Rooms { get; set; }
-        public virtual Room Room { get; set; }
 
         //fk?
 

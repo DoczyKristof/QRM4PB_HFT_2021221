@@ -28,7 +28,7 @@ namespace QRM4PB_HFT_2021221.Test
                 Title = "Marvel's Eternals",
                 Price = 2500,
                 Type = MovieType.Action,
-                Length = new TimeSpan(2, 37, 0),
+                Length = "2 hours 37 minutes",
                 RoomId = 1
             };
 

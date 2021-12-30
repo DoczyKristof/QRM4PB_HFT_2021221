@@ -1,5 +1,6 @@
 ﻿using QRM4PB_HFT_2021221.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QRM4PB_HFT_2021221.Client
@@ -16,7 +17,18 @@ namespace QRM4PB_HFT_2021221.Client
             var movies = service.Get<Movie>("Movie");
             var rooms = service.Get<Room>("Room");
 
-            var noncrud = service.GetSingle<double>("stat/AverageMoviePrice");
+            //roomlogic
+            var RoomWithLeastIncome = service.GetSingle<Room>("stat/RoomWithLeastIncome");
+            var CinemasThatHaveMovie = service.Get<Cinema>("stat/CinemasThatHaveMovie");
+            var RoomsThatHaveMovie = service.Get<Room>("stat/RoomsThatHaveMovie");
+            //movielogic
+            var averageMoviePrice = service.GetSingle<double>("stat/AverageMoviePrice");
+            var AveragePricesByTypes = service.Get<KeyValuePair<MovieType, double>>
+                ("stat/AveragePricesByTypes");
+            var NumOfMoviesInTypes = service.Get<KeyValuePair<MovieType, int>>
+                ("stat/NumOfMoviesInTypes");
+            //cinemalogic
+            var AvgCinemaSize = service.GetSingle<int>("stat/AvgCinemaSize");
             ;
         }
     }

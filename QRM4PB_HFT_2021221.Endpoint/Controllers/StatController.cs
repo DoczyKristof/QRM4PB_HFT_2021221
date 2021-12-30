@@ -68,7 +68,7 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
         }
 
         //cinemalogic
-        public int AvgCinemaSize()
+        public double AvgCinemaSize()
         {
             return cinemaLogic.avgCinemaSize();
         }

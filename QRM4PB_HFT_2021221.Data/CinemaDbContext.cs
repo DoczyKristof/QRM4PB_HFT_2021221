@@ -66,7 +66,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Marvel's Eternals",
                 Price = 2500,
                 Type = MovieType.Action,
-                Length = new TimeSpan(2, 37, 0),
+                Length = "2 hours 37 minutes",
                 RoomId = ccArena1.Id
             };
             Movie movie2 = new Movie()
@@ -75,7 +75,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Spider-Man No way home",
                 Price = 2500,
                 Type = MovieType.Action,
-                Length = new TimeSpan(2, 30, 0),
+                Length = "2 hours 30 minutes",
                 RoomId = ccArena1.Id
             };
             Movie movie3 = new Movie()
@@ -84,7 +84,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Red Notice",
                 Price = 1900,
                 Type = MovieType.Comedy,
-                Length = new TimeSpan(1, 55, 0),
+                Length = "1 hour 55 minutes",
                 RoomId = ccArena2.Id
             };
             Movie movie4 = new Movie()
@@ -93,7 +93,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Passing",
                 Price = 1690,
                 Type = MovieType.Drama,
-                Length = new TimeSpan(1, 38, 0),
+                Length = "1 hour 38 minutes",
                 RoomId = ccArena3.Id
             };
             Movie movie5 = new Movie()
@@ -102,7 +102,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Hive",
                 Price = 1890,
                 Type = MovieType.Drama,
-                Length = new TimeSpan(1, 24, 0),
+                Length = "1 hour 24 minutes",
                 RoomId = ccArena3.Id
             };
             Movie movie6 = new Movie()
@@ -111,7 +111,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "A gift from Bob",
                 Price = 1290,
                 Type = MovieType.Drama,
-                Length = new TimeSpan(1, 32, 0),
+                Length = "1 hour 32 minutes",
                 RoomId = ccMamut1.Id
             };
             Movie movie7 = new Movie()
@@ -120,7 +120,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Nightbooks",
                 Price = 0,
                 Type = MovieType.Horror,
-                Length = new TimeSpan(1, 43, 0),
+                Length = "1 hour 43 minutes",
                 RoomId = ccMamut2.Id
             };
             Movie movie8 = new Movie()
@@ -129,7 +129,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Candyman",
                 Price = 0,
                 Type = MovieType.Horror,
-                Length = new TimeSpan(1, 31, 0),
+                Length = "1 hour 31 minutes",
                 RoomId = ccMamut2.Id
             };
             Movie movie9 = new Movie()
@@ -138,7 +138,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Ghostbusters: Afterlife",
                 Price = 1490,
                 Type = MovieType.Fantasy,
-                Length = new TimeSpan(2, 4, 0),
+                Length = "2 hours 4 minutes",
                 RoomId = marosMozi1.Id
             };
             Movie movie10 = new Movie()
@@ -147,7 +147,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Nagykarácsony",
                 Price = 1990,
                 Type = MovieType.Romance,
-                Length = new TimeSpan(1, 48, 0),
+                Length = "1 hour 48 minutes",
                 RoomId = marosMozi2.Id
             };
             Movie movie11 = new Movie()
@@ -156,7 +156,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "Venom: Let there be carnage",
                 Price = 0,
                 Type = MovieType.Action,
-                Length = new TimeSpan(1, 37, 0),
+                Length = "1 hour 37 minutes",
                 RoomId = sugarMozi2.Id
             };
             Movie movie12 = new Movie()
@@ -165,7 +165,7 @@ namespace QRM4PB_HFT_2021221.Data
                 Title = "King Richard",
                 Price = 1690,
                 Type = MovieType.Drama,
-                Length = new TimeSpan(2, 18, 0),
+                Length = "2 hours 18 minutes",
                 RoomId = sugarMozi3.Id
             };
 

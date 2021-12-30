@@ -26,7 +26,8 @@ namespace QRM4PB_HFT_2021221.Models
         [Required]
         public int? Price { get; set; }
         [Required]
-        public TimeSpan Length { get; set; }
+        //originally was timespan, couldnt deserialize it so its now string
+        public string Length { get; set; }
         [Required]
         public MovieType Type { get; set; }
 
