@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using QRM4PB_HFT_2021221.Logic;
 using QRM4PB_HFT_2021221.Models;
 using System;
@@ -7,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QRM4PB_HFT_202122.Endpoint.Controllers
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace QRM4PB_HFT_2021221.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -21,21 +22,21 @@ namespace QRM4PB_HFT_202122.Endpoint.Controllers
         }
 
         [HttpGet("test")]
-        public string Test() {
-
+        public string Test()
+        {
             return "Room controller test";
         }
 
         [HttpGet]
-        public IEnumerable<Room> GetAll() {
-
+        public IEnumerable<Room> GetAll()
+        {
             return logic.ReadAll();
         }
 
         [HttpPost]
-        public void AddOne([FromBody] Room room) {
-
-            logic.Create(room);        
+        public void AddOne([FromBody] Room room)
+        {
+            logic.Create(room);
         }
 
         [HttpPut]

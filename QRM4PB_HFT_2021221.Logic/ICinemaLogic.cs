@@ -9,10 +9,12 @@ namespace QRM4PB_HFT_2021221.Logic
 {
     public interface ICinemaLogic
     {
+        //crud
         void Create(Cinema cinema);
         IQueryable<Cinema> ReadAll();
         void Update(Cinema Cinema);
         void Delete(int id);
+        //noncrud
         public int avgCinemaSize();
     }
 }

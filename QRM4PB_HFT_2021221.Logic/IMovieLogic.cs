@@ -9,13 +9,16 @@ namespace QRM4PB_HFT_2021221.Logic
 {
     public interface IMovieLogic
     {
+        //crud
         void Create(Movie movie);
         IQueryable<Movie> ReadAll();
         void Update(Movie movie);
         void Delete(int id);
+
+        //noncrud
         double AverageMoviePrice();
 
-        IEnumerable<KeyValuePair<MovieType, double>>
+       public IEnumerable<KeyValuePair<MovieType, double>>
             AveragePricesByTypes();
 
         public IEnumerable<KeyValuePair<MovieType, int>>

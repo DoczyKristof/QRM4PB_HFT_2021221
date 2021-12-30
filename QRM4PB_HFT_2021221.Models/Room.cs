@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QRM4PB_HFT_2021221.Models
@@ -19,10 +20,12 @@ namespace QRM4PB_HFT_2021221.Models
         public int RoomNumber { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Cinema Cinema { get; set; }
         public int CinemaId { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Movie> Movies { get; set; }
         public virtual Movie Movie { get; set; }
         public Room()
