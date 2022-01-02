@@ -22,6 +22,8 @@ namespace QRM4PB_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Cinema Cinema { get; set; }
+        
+        [ForeignKey(nameof(Room))]
         public int CinemaId { get; set; }
 
         [NotMapped]

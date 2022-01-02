@@ -14,6 +14,7 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
+        //hol használom lul?
         IRoomLogic roomLogic;
         IMovieLogic movieLogic;
         ICinemaLogic cinemaLogic;
