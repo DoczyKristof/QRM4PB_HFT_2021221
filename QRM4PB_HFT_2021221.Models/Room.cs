@@ -23,6 +23,7 @@ namespace QRM4PB_HFT_2021221.Models
         [JsonIgnore]
         public virtual Cinema Cinema { get; set; }
         
+        //fk
         [ForeignKey(nameof(Room))]
         public int CinemaId { get; set; }
 
@@ -31,6 +32,7 @@ namespace QRM4PB_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Movie Movie { get; set; }
+        
         public Room()
         {
             Movies = new HashSet<Movie>();

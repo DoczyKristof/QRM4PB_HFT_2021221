@@ -170,22 +170,21 @@ namespace QRM4PB_HFT_2021221.Data
             };
 
             //
+            modelBuilder.Entity<Cinema>(entity =>
+            {
+                entity.HasMany(cinema => cinema.Rooms)
+                    .WithOne(room => room.Cinema)
+                    .HasForeignKey(room => room.CinemaId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
             modelBuilder.Entity<Room>(entity =>
             {
-                entity.HasOne(room => room.Cinema)
-                    .WithMany(cinema => cinema.Rooms)
-                    .HasForeignKey(room => room.CinemaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            });
-
-            modelBuilder.Entity<Movie>(entity =>
-            {
-                entity.HasOne(movie => movie.Room)
-                    .WithMany(room => room.Movies)
+                entity.HasMany(room => room.Movies)
+                    .WithOne(movie => movie.Room)
                     .HasForeignKey(movie => movie.RoomId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .OnDelete(DeleteBehavior.Cascade);
             });
-
 
             //
             modelBuilder.Entity<Cinema>().HasData(ccArena, ccMamut, marosMozi, sugarMozi);
@@ -194,9 +193,6 @@ namespace QRM4PB_HFT_2021221.Data
                 sugarMozi1, sugarMozi2, sugarMozi3);
             modelBuilder.Entity<Movie>().HasData(movie1, movie2, movie3, movie4, movie5, movie6,
                 movie7, movie8, movie9, movie10, movie11, movie12);
-
         }
-
-
     }
 }

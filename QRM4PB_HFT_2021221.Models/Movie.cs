@@ -34,7 +34,8 @@ namespace QRM4PB_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Room Room { get; set; }
-        
+
+        //fk
         [ForeignKey(nameof(Room))]
         public int RoomId { get; set; }
     }

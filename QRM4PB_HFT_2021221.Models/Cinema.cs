@@ -22,8 +22,6 @@ namespace QRM4PB_HFT_2021221.Models
         //[JsonIgnore]
         public virtual ICollection<Room> Rooms { get; set; }
 
-        //fk?
-
         public Cinema()
         {
             Rooms = new HashSet<Room>();

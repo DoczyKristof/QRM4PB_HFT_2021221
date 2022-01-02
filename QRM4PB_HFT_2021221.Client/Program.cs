@@ -35,7 +35,6 @@ namespace QRM4PB_HFT_2021221.Client
                         foreach (var cinema in cinemas)
                         {
                             Console.WriteLine(cinema.Name);
-
                         }
                         break;
                     case "movie":
