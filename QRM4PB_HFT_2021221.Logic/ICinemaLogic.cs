@@ -15,6 +15,6 @@ namespace QRM4PB_HFT_2021221.Logic
         void Update(Cinema Cinema);
         void Delete(int id);
         //noncrud
-        public double avgCinemaSize();
+        public int avgCinemaSize();
     }
 }

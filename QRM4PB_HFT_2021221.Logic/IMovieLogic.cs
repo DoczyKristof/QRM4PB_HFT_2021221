@@ -16,9 +16,9 @@ namespace QRM4PB_HFT_2021221.Logic
         void Delete(int id);
 
         //noncrud
-        double AverageMoviePrice();
+        int AverageMoviePrice();
 
-       public IEnumerable<KeyValuePair<MovieType, double>>
+        public IEnumerable<KeyValuePair<MovieType, double>>
             AveragePricesByTypes();
 
         public IEnumerable<KeyValuePair<MovieType, int>>

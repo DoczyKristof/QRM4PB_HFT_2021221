@@ -45,11 +45,13 @@ namespace QRM4PB_HFT_2021221.Logic
         }
         
         //non crud
-        public double avgCinemaSize()
+        public int avgCinemaSize()
         {
-            return repo
+            return (int)Math.Round(
+                repo
                 .ReadAll()
-                .Average(x => x.Rooms.Count());
+                .Average(x => x.Rooms.Count())
+                );
         }
     }
 }

@@ -66,7 +66,7 @@ namespace QRM4PB_HFT_2021221.Logic
             return repo
                  .ReadAll()
                  .Select(x => x)
-                 .Where(x => x.Movie.Price == x.Movies.Min(c => c.Price ?? 0));
+                 .Where(x => x.Movie.Price == x.Movies.Min(c => c.Price ?? 0)).AsEnumerable();
         }
     }
 }
