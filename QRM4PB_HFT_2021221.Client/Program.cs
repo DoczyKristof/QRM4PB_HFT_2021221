@@ -10,7 +10,14 @@ namespace QRM4PB_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(8000);
+            Console.WriteLine("Loading...");
+            for (int i = 0; i < 50; i++)
+            {
+                Console.Write("#");
+                System.Threading.Thread.Sleep(160);
+            }
+
+            //System.Threading.Thread.Sleep(8000);
 
             RestService service = new RestService("http://localhost:20463");
            
