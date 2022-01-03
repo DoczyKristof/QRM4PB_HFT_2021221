@@ -150,7 +150,7 @@ namespace QRM4PB_HFT_2021221.Client
                         break;
                     case "movie":
                         Console.Clear();
-                        Console.WriteLine("Creating a Movie:\n");
+                        Console.WriteLine("Creating a movie:\n");
                         //listing rooms
                         var rooms = service.Get<Room>("Room");
                         var movieTheatre = service.Get<Cinema>("Cinema");
@@ -192,7 +192,110 @@ namespace QRM4PB_HFT_2021221.Client
                         break;
                 }
             }
-            
+            //update menu
+            void Update(string type)
+            {
+                switch (type)
+                {
+                    case "cinema":
+                        Console.Clear();
+                        Console.WriteLine("Updating a cinema:\n");
+                        var cinemas = service.Get<Cinema>("Cinema");
+                        foreach (var cinema in cinemas)
+                        {
+                            Console.WriteLine("{0} - {1}", cinema.Id, cinema.Name);
+                        }
+                        Console.WriteLine("\nChoose a cinema id!");
+                        int cinemaUpdate = int.Parse(Console.ReadLine());
+                        Console.WriteLine("New name of the cinema:");
+                        string cinemaName = Console.ReadLine();
+                        Cinema updatedCinema = new Cinema() { Id = cinemaUpdate, Name = cinemaName };
+                        service.Put(updatedCinema, "Cinema");
+                        break;
+                    case "room":
+                        Console.Clear();
+                        Console.WriteLine("Updating a room:\n");
+                        var rooms = service.Get<Room>("Room");
+                        var movieTheatre = service.Get<Cinema>("Cinema");
+                        foreach (var room in rooms)
+                        {
+                            Console.WriteLine(
+                                movieTheatre.
+                                Where(x => x.Id == room.CinemaId).
+                                Select(x => x.Name).FirstOrDefault() +
+                                ": Roomnumber: " + room.RoomNumber + "| Id: " + room.Id + " |");
+                        }
+                        Console.WriteLine("\nChoose a room id!");
+                        int roomUpdate = int.Parse(Console.ReadLine());
+                       
+                        Room oldRoom = rooms.Where(x => x.Id == roomUpdate).FirstOrDefault();
+                        Console.WriteLine("New number of the room:");
+                        int newRoomNumber = int.Parse(Console.ReadLine());
+                        Room updatedRoom = new Room() { Id = roomUpdate, CinemaId = oldRoom.CinemaId,  RoomNumber = newRoomNumber };
+                        service.Put(updatedRoom, "Room");
+
+                        break;
+                    case "movie":
+                        Console.Clear();
+                        Console.WriteLine("Updating a movie:\n");
+                        var movies = service.Get<Movie>("Movie");
+                        foreach (var movie in movies)
+                        {
+                            Console.WriteLine("{0} - {1} ({2}Ft) [{3}, {4}]",
+                                movie.Id, movie.Title, movie.Price, movie.Type, movie.Length);
+                        }
+                        Console.WriteLine("\nChoose a movie id!");
+                        int movieUpdate = int.Parse(Console.ReadLine());
+                        Movie oldMovie = movies.Where(x => x.Id == movieUpdate).FirstOrDefault();
+                        Console.WriteLine("What would you like to change?\n1 - Title" +
+                            "\n2 - Price\n3 - Type\n4 - Length");
+                        int theOne = int.Parse(Console.ReadLine());
+                        switch (theOne)
+                        {
+                            case 1:
+                                Console.WriteLine("New title:");
+                                oldMovie.Title = Console.ReadLine();
+                                break;
+                            case 2:
+                                Console.WriteLine("New price:");
+                                oldMovie.Price = int.Parse(Console.ReadLine());
+                                break;
+                            case 3:
+                                Console.WriteLine();
+                                int index = 0;
+                                foreach (MovieType movietype in (MovieType[])Enum.GetValues(typeof(MovieType)))
+                                {
+                                    Console.WriteLine("{0} - {1}", index++, movietype);
+                                }
+                                Console.WriteLine("New type of the movie (choose an id):");
+                                oldMovie.Type = (MovieType)int.Parse(Console.ReadLine());
+                                break;
+                            case 4:
+                                Console.WriteLine("New length (format example 2:48):");
+                                string rawLength = Console.ReadLine();
+                                oldMovie.Length = String.Format("{0} hour(s) {1} minute(s)", rawLength.Split(':')[0], rawLength.Split(':')[1]);
+                                break;
+                            default:
+                                Console.WriteLine("Error!");
+                                break;
+                        }
+                        Movie updatedMovie = new Movie()
+                        {
+                            Id = oldMovie.Id,
+                            Title = oldMovie.Title,
+                            Price = oldMovie.Price,
+                            Type = oldMovie.Type,
+                            Length = oldMovie.Length,
+                            RoomId = oldMovie.RoomId
+                        };
+                        service.Put(updatedMovie, "Movie");
+                        break;
+                    default:
+                        Console.WriteLine("Error!");
+                        break;
+                }
+            }
+
             //delete menu
             void Delete(string type)
             {
@@ -281,6 +384,20 @@ namespace QRM4PB_HFT_2021221.Client
 
             //sub crud menus
             //delete menu
+            var UpdateMenu = new ConsoleMenu(args, level: 2)
+                .Add("Cinema", () => Update("cinema"))
+                .Add("Room", () => Update("room"))
+                .Add("Movie", () => Update("movie"))
+                .Add("Back", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.EnableFilter = false;
+                    config.Title = "What to delete?";
+                    config.EnableBreadcrumb = true;
+                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+                });
+            //delete menu
             var DeleteMenu = new ConsoleMenu(args, level: 2)
                 .Add("Cinema", () => Delete("cinema"))
                 .Add("Room", () => Delete("room"))
@@ -313,7 +430,7 @@ namespace QRM4PB_HFT_2021221.Client
             var CrudMenu = new ConsoleMenu(args, level: 1)
                .Add("Create", () => CreateMenu.Show())
                .Add("Read", () => listMenu.Show())
-               .Add("Update", () => NonCrud(3))
+               .Add("Update", () => UpdateMenu.Show())
                .Add("Delete", () => DeleteMenu.Show())
                .Add("Back", ConsoleMenu.Close)
                .Configure(config =>
