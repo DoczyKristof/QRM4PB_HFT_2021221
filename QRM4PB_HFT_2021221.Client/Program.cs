@@ -120,7 +120,81 @@ namespace QRM4PB_HFT_2021221.Client
                 theEndThing();
             }
 
+            //Create method
+            void Create(string type)
+            {
+                switch (type)
+                {
+                    case "cinema":
+                        Console.Clear();
+                        Console.WriteLine("Creating a cinema:\n");
+                        Console.WriteLine("The name of cinema: ");
+                        string cinemaName = Console.ReadLine();
+                        Cinema newCinema = new Cinema() { Name = cinemaName };
+                        service.Post(newCinema, "Cinema");
+                        break;
+                    case "room":
+                        Console.Clear();
+                        Console.WriteLine("Creating a room:\n");
+                        var cinemas = service.Get<Cinema>("Cinema");
+                        foreach (var cinema in cinemas)
+                        {
+                            Console.WriteLine("{0} - {1}", cinema.Id, cinema.Name);
+                        }
+                        Console.WriteLine("\nWhich cinema is getting extended? (choose a number)");
+                        int cinemaId = int.Parse(Console.ReadLine());
+                        Console.WriteLine("\nThe room number: ");
+                        int roomNumber = int.Parse(Console.ReadLine());
+                        Room newRoom = new Room() { CinemaId = cinemaId, RoomNumber = roomNumber };
+                        service.Post(newRoom, "Room");
+                        break;
+                    case "movie":
+                        Console.Clear();
+                        Console.WriteLine("Creating a Movie:\n");
+                        //listing rooms
+                        var rooms = service.Get<Room>("Room");
+                        var movieTheatre = service.Get<Cinema>("Cinema");
+                        foreach (var room in rooms)
+                        {
+                            Console.WriteLine(
+                                movieTheatre.
+                                Where(x => x.Id == room.CinemaId).
+                                Select(x => x.Name).FirstOrDefault() +
+                                ": Roomnumber: " + room.RoomNumber + "| Id: " + room.Id + " |");
+                        }
+
+                        Console.WriteLine("\nWhich room plays the movie? (choose a number)");
+                        int roomId = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Title: ");
+                        string title = Console.ReadLine();
+                        Console.WriteLine("Price: ");
+                        int price = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Lenght: (format example: 2:18) ");
+                        string rawLength = Console.ReadLine();
+                        string length = String.Format("{0} hour(s) {1} minute(s)", rawLength.Split(':')[0], rawLength.Split(':')[1]);
+                        int index = 1;
+                        foreach (MovieType movietype in (MovieType[])Enum.GetValues(typeof(MovieType)))
+                        {
+                            Console.WriteLine("{0} - {1}", index++, movietype);
+                        }
+                        Console.WriteLine("What type is it? (choose a number)");
+                        int mtype = int.Parse(Console.ReadLine());
+                        MovieType movieType = (MovieType)mtype;
+                        Movie newMovie = new Movie() { RoomId = roomId,
+                            Title = title, Price = price, Length = length,
+                            Type = movieType};
+                        var chosenRoom = rooms.Where(x => x.Id == roomId).FirstOrDefault();
+                        chosenRoom.Movies.Add(newMovie);
+                        service.Post(newMovie , "Movie");
+                        break;
+                    default:
+                        Console.WriteLine("Error!");
+                        break;
+                }
+            }
+            
             //the menu
+            //list menu
             var listMenu = new ConsoleMenu(args, level: 1)
                       .Add("Cinemas", () => List("cinema"))
                       .Add("Movies", () => List("movie"))
@@ -135,6 +209,7 @@ namespace QRM4PB_HFT_2021221.Client
                           config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
                       });
 
+            //non-crud menu
             var nonCrudMenu = new ConsoleMenu(args, level: 1)
                .Add("Cinemas that have movie", () => NonCrud(1))
                .Add("Rooms that have movie", () => NonCrud(2))
@@ -151,10 +226,43 @@ namespace QRM4PB_HFT_2021221.Client
                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
                });
 
+            //sub crud menus
+            //create menu
+            var CreateMenu = new ConsoleMenu(args, level: 2)
+               .Add("Cinema", () => Create("cinema"))
+               .Add("Room", () => Create("room"))
+               .Add("Movie", () => Create("movie"))
+               .Add("Back", ConsoleMenu.Close)
+               .Configure(config =>
+               {
+                   config.Selector = "--> ";
+                   config.EnableFilter = false;
+                   config.Title = "What to create?";
+                   config.EnableBreadcrumb = true;
+                   config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+               });
+
+            //crud menu
+            var CrudMenu = new ConsoleMenu(args, level: 1)
+               .Add("Create", () => CreateMenu.Show())
+               .Add("Read", () => NonCrud(2))
+               .Add("Update", () => NonCrud(3))
+               .Add("Delete", () => NonCrud(3))
+               .Add("Back", ConsoleMenu.Close)
+               .Configure(config =>
+               {
+                   config.Selector = "--> ";
+                   config.EnableFilter = false;
+                   config.Title = "What would you like to do?" ;
+                   config.EnableBreadcrumb = true;
+                   config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+               });
+
+            //main menu
             var mainMenu = new ConsoleMenu(args, level: 0)
              .Add("Lists", () => listMenu.Show())
              .Add("Non-CRUD Methods", () => nonCrudMenu.Show())
-             .Add("CRUD Methods", () => Console.WriteLine("Not yet implemented"))
+             .Add("CRUD Methods", () => CrudMenu.Show())
              .Add("Exit", () => Environment.Exit(0))
              .Configure(config =>
              {
@@ -166,9 +274,6 @@ namespace QRM4PB_HFT_2021221.Client
              });
 
             mainMenu.Show();
-
-
-            //moved least income, yet to clean it from
         }
     }
 }
