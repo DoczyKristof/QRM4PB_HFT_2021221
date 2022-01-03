@@ -10,7 +10,8 @@ namespace QRM4PB_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Loading...");
+            Console.WriteLine("Note: the first query you choose could be slow.");
+            Console.WriteLine("\n\nLoading...");
             for (int i = 0; i < 50; i++)
             {
                 Console.Write("#");
@@ -59,7 +60,6 @@ namespace QRM4PB_HFT_2021221.Client
                                 Select(x => x.Name).FirstOrDefault() +
                                 ": Roomnumber: " + room.RoomNumber +
                                 " (" + room.Movies.FirstOrDefault()?.Title + ")");
-                            ;
                         }
                         break;
                     default:
@@ -163,7 +163,7 @@ namespace QRM4PB_HFT_2021221.Client
                                 ": Roomnumber: " + room.RoomNumber + "| Id: " + room.Id + " |");
                         }
 
-                        Console.WriteLine("\nWhich room plays the movie? (choose a number)");
+                        Console.WriteLine("\nWhich room plays the movie? (choose an id)");
                         int roomId = int.Parse(Console.ReadLine());
                         Console.WriteLine("Title: ");
                         string title = Console.ReadLine();
@@ -172,12 +172,12 @@ namespace QRM4PB_HFT_2021221.Client
                         Console.WriteLine("Lenght: (format example: 2:18) ");
                         string rawLength = Console.ReadLine();
                         string length = String.Format("{0} hour(s) {1} minute(s)", rawLength.Split(':')[0], rawLength.Split(':')[1]);
-                        int index = 1;
+                        int index = 0;
                         foreach (MovieType movietype in (MovieType[])Enum.GetValues(typeof(MovieType)))
                         {
                             Console.WriteLine("{0} - {1}", index++, movietype);
                         }
-                        Console.WriteLine("What type is it? (choose a number)");
+                        Console.WriteLine("What type is it? (choose an id)");
                         int mtype = int.Parse(Console.ReadLine());
                         MovieType movieType = (MovieType)mtype;
                         Movie newMovie = new Movie() { RoomId = roomId,
@@ -193,6 +193,59 @@ namespace QRM4PB_HFT_2021221.Client
                 }
             }
             
+            //delete menu
+            void Delete(string type)
+            {
+                switch (type)
+                {
+                    case "cinema":
+                        Console.Clear();
+                        Console.WriteLine("Deleting a cinema:\n");
+                        var cinemas = service.Get<Cinema>("Cinema");
+                        foreach (var cinema in cinemas)
+                        {
+                            Console.WriteLine("{0} - {1}", cinema.Id, cinema.Name);
+                        }
+                        Console.WriteLine("\nWhich one to delete? (choose a number)");
+                        int deleteCinema = int.Parse(Console.ReadLine());
+                        service.Delete(deleteCinema, "Cinema");
+                        break;
+                    case "room":
+                        Console.Clear();
+                        Console.WriteLine("Deleting a room:\n");
+                        var rooms = service.Get<Room>("Room");
+                        var movieTheatre = service.Get<Cinema>("Cinema");
+                        foreach (var room in rooms)
+                        {
+                            Console.WriteLine(
+                                movieTheatre.
+                                Where(x => x.Id == room.CinemaId).
+                                Select(x => x.Name).FirstOrDefault() +
+                                ": Roomnumber: " + room.RoomNumber + "| Id: " + room.Id + " |");
+                        }
+                        Console.WriteLine("\nWhich one to delete? (choose an id)");
+                        int deleteRoom = int.Parse(Console.ReadLine());
+                        service.Delete(deleteRoom, "Room");
+                        break;
+                    case "movie":
+                        Console.Clear();
+                        Console.WriteLine("Deleting a movie:\n");
+                        var movies = service.Get<Movie>("Movie");
+                        foreach (var movie in movies)
+                        {
+                            Console.WriteLine("{0} - {1}", movie.Id, movie.Title);
+                        }
+                        Console.WriteLine("\nWhich one to delete? (choose an id)");
+                        int deleteMovie = int.Parse(Console.ReadLine());
+                        service.Delete(deleteMovie, "Movie");
+                        break;
+                    default:
+                        Console.WriteLine("Error!");
+                        break;
+                }
+            }
+
+
             //the menu
             //list menu
             var listMenu = new ConsoleMenu(args, level: 1)
@@ -227,6 +280,20 @@ namespace QRM4PB_HFT_2021221.Client
                });
 
             //sub crud menus
+            //delete menu
+            var DeleteMenu = new ConsoleMenu(args, level: 2)
+                .Add("Cinema", () => Delete("cinema"))
+                .Add("Room", () => Delete("room"))
+                .Add("Movie", () => Delete("movie"))
+                .Add("Back", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.EnableFilter = false;
+                    config.Title = "What to delete?";
+                    config.EnableBreadcrumb = true;
+                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+                });
             //create menu
             var CreateMenu = new ConsoleMenu(args, level: 2)
                .Add("Cinema", () => Create("cinema"))
@@ -245,9 +312,9 @@ namespace QRM4PB_HFT_2021221.Client
             //crud menu
             var CrudMenu = new ConsoleMenu(args, level: 1)
                .Add("Create", () => CreateMenu.Show())
-               .Add("Read", () => NonCrud(2))
+               .Add("Read", () => listMenu.Show())
                .Add("Update", () => NonCrud(3))
-               .Add("Delete", () => NonCrud(3))
+               .Add("Delete", () => DeleteMenu.Show())
                .Add("Back", ConsoleMenu.Close)
                .Configure(config =>
                {
