@@ -383,7 +383,7 @@ namespace QRM4PB_HFT_2021221.Client
                });
 
             //sub crud menus
-            //delete menu
+            //update menu
             var UpdateMenu = new ConsoleMenu(args, level: 2)
                 .Add("Cinema", () => Update("cinema"))
                 .Add("Room", () => Update("room"))
@@ -393,7 +393,7 @@ namespace QRM4PB_HFT_2021221.Client
                 {
                     config.Selector = "--> ";
                     config.EnableFilter = false;
-                    config.Title = "What to delete?";
+                    config.Title = "What to update?";
                     config.EnableBreadcrumb = true;
                     config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
                 });
