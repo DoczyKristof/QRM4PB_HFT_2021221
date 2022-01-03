@@ -247,17 +247,17 @@ namespace QRM4PB_HFT_2021221.Client
                         Console.WriteLine("\nChoose a movie id!");
                         int movieUpdate = int.Parse(Console.ReadLine());
                         Movie oldMovie = movies.Where(x => x.Id == movieUpdate).FirstOrDefault();
-                        Console.WriteLine("What would you like to change?\n1 - Title" +
+                        Console.WriteLine("\nWhat would you like to change?\n1 - Title" +
                             "\n2 - Price\n3 - Type\n4 - Length");
                         int theOne = int.Parse(Console.ReadLine());
                         switch (theOne)
                         {
                             case 1:
-                                Console.WriteLine("New title:");
+                                Console.WriteLine("\nNew title:");
                                 oldMovie.Title = Console.ReadLine();
                                 break;
                             case 2:
-                                Console.WriteLine("New price:");
+                                Console.WriteLine("\nNew price:");
                                 oldMovie.Price = int.Parse(Console.ReadLine());
                                 break;
                             case 3:
@@ -267,11 +267,11 @@ namespace QRM4PB_HFT_2021221.Client
                                 {
                                     Console.WriteLine("{0} - {1}", index++, movietype);
                                 }
-                                Console.WriteLine("New type of the movie (choose an id):");
+                                Console.WriteLine("\nNew type of the movie (choose an id):");
                                 oldMovie.Type = (MovieType)int.Parse(Console.ReadLine());
                                 break;
                             case 4:
-                                Console.WriteLine("New length (format example 2:48):");
+                                Console.WriteLine("\nNew length (format example 2:48):");
                                 string rawLength = Console.ReadLine();
                                 oldMovie.Length = String.Format("{0} hour(s) {1} minute(s)", rawLength.Split(':')[0], rawLength.Split(':')[1]);
                                 break;
