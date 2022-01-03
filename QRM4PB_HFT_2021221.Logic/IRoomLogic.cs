@@ -16,7 +16,6 @@ namespace QRM4PB_HFT_2021221.Logic
         void Delete(int id);
 
         //noncrud
-        public IEnumerable<Room> LeastIncome();
         public IEnumerable<Cinema> CinemasThatHaveMovie();
         public IEnumerable<Room> RoomsThatHaveMovie();
 

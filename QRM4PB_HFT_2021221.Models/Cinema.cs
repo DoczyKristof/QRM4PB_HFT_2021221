@@ -26,6 +26,5 @@ namespace QRM4PB_HFT_2021221.Models
         {
             Rooms = new HashSet<Room>();
         }
-
     }
 }

@@ -10,14 +10,10 @@ namespace QRM4PB_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(8000);
 
             RestService service = new RestService("http://localhost:20463");
-            
-            //nw
-            //var RoomWithLeastIncome = service.GetSingle<Room>("stat/RoomWithLeastIncome");
-            //var AvgCinemaSize = service.GetSingle<int>("stat/AvgCinemaSize");
-            
+           
             //methods i need
             void theEndThing()
             {
@@ -47,12 +43,16 @@ namespace QRM4PB_HFT_2021221.Client
                         break;
                     case "room":
                         var rooms = service.Get<Room>("Room");
+                        var movieTheatre = service.Get<Cinema>("Cinema");
                         foreach (var room in rooms)
                         {
                             Console.WriteLine(
-                                "Cinema Id: " + room.CinemaId +
+                                movieTheatre.
+                                Where(x => x.Id == room.CinemaId).
+                                Select(x => x.Name).FirstOrDefault() +
                                 ": Roomnumber: " + room.RoomNumber +
                                 " (" + room.Movies.FirstOrDefault()?.Title + ")");
+                            ;
                         }
                         break;
                     default:
@@ -74,10 +74,13 @@ namespace QRM4PB_HFT_2021221.Client
                         break;
                     case 2:
                         var RoomsThatHaveMovie = service.Get<Room>("stat/RoomsThatHaveMovie");
+                        var movieTheatre = service.Get<Cinema>("Cinema");
                         foreach (var room in RoomsThatHaveMovie)
                         {
                             Console.WriteLine(
-                                "Cinema Id: " + room.CinemaId +
+                                movieTheatre.
+                                Where(x => x.Id == room.CinemaId).
+                                Select(x => x.Name).FirstOrDefault() +
                                 ": Roomnumber: " + room.RoomNumber +
                                 " (" + room.Movies.FirstOrDefault().Title + ")");
                         }
@@ -156,6 +159,9 @@ namespace QRM4PB_HFT_2021221.Client
              });
 
             mainMenu.Show();
+
+
+            //moved least income, yet to clean it from
         }
     }
 }

@@ -44,7 +44,13 @@ namespace QRM4PB_HFT_2021221.Logic
                    x.Key, x.Count()));
         }
 
-
+        public IEnumerable<Room> LeastIncome()
+        {
+            return repo
+                 .ReadAll()
+                 .Select(x => x.Room)
+                 .Where(x => x.Movie.Price == x.Movies.Min(c => c.Price ?? 0)).AsEnumerable();
+        }
 
         //CRUD
         public void Create(Movie movie)

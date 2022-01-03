@@ -29,12 +29,6 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
 
         //roomlogic
         [HttpGet]
-        public IEnumerable<Room> RoomWithLeastIncome()
-        {
-            return roomLogic.LeastIncome();
-        }
-
-        [HttpGet]
         public IEnumerable<Cinema> CinemasThatHaveMovie()
         {
             return roomLogic.CinemasThatHaveMovie();
@@ -47,6 +41,12 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
         }
 
         //movielogic
+        [HttpGet]
+        public IEnumerable<Room> RoomWithLeastIncome()
+        {
+            return movieLogic.LeastIncome();
+        }
+
         [HttpGet]
         public double AverageMoviePrice()
         {
@@ -68,6 +68,7 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
         }
 
         //cinemalogic
+        [HttpGet]
         public double AvgCinemaSize()
         {
             return cinemaLogic.avgCinemaSize();

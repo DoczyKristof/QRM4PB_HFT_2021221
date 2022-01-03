@@ -69,7 +69,6 @@ namespace QRM4PB_HFT_2021221.Client
         {
             HttpResponseMessage response =
                 client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
-
             response.EnsureSuccessStatusCode();
         }
 
@@ -77,7 +76,6 @@ namespace QRM4PB_HFT_2021221.Client
         {
             HttpResponseMessage response =
                 client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
-
             response.EnsureSuccessStatusCode();
         }
 
@@ -85,8 +83,6 @@ namespace QRM4PB_HFT_2021221.Client
         {
             HttpResponseMessage response =
                 client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
-
-
             response.EnsureSuccessStatusCode();
         }
 
