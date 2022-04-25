@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Icons\ico_mainWindow.png" />
     <Resource Include="Icons\ico_main_btn_crud.png" />
     <Resource Include="Icons\ico_main_btn_exit.png" />

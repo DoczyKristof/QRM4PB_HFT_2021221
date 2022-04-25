@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
+        xmlns:vm="clr-namespace:QRM4PB_HFT_2021221.WPFClient.ViewModels"
         mc:Ignorable="d"
         Title="Main menu" Height="420" Width="400" ResizeMode="NoResize" Icon="Icons/ico_mainWindow.png" WindowStartupLocation="CenterScreen">
     <Window.Background>
@@ -13,6 +14,9 @@
         </RadialGradientBrush>
     </Window.Background>
     <Grid x:Name="Grid_Main">
+        <Grid.DataContext>
+            <vm:MainMenuViewModel/>
+        </Grid.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -38,7 +42,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
                 <StackPanel>
-                    <Image Source="Icons/ico_main_btn_list.png" Stretch="None" />
+                    <Image Source="/Icons/ico_main_btn_list.png" Stretch="None" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">Lists</TextBlock>
                 </StackPanel>
             </Button>
@@ -59,7 +63,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
                 <StackPanel>
-                    <Image Source="/ico_main_btn_crud.png" Stretch="None" Width="64" Height="64" />
+                    <Image Source="/Icons/ico_main_btn_crud.png" Stretch="None" Width="64" Height="64" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">CRUD</TextBlock>
                 </StackPanel>
             </Button>
@@ -72,7 +76,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Label x:Name="lb_clock" Content="19:59:59" Grid.Row="1" HorizontalAlignment="Right" FontSize="14" FontWeight="SemiBold"/>
-            <Button x:Name="btn_exit" Margin="20" BorderBrush="{x:Null}" Style="{StaticResource Custom_Button}">
+            <Button x:Name="btn_exit" Margin="20" BorderBrush="{x:Null}" Style="{StaticResource Custom_Button}" Command="{Binding ExitCommand}" >
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="Black" Offset="1"/>
@@ -81,7 +85,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
                 <StackPanel>
-                    <Image Source="Icons/ico_main_btn_exit.png" Stretch="None" />
+                    <Image Source="/Icons/ico_main_btn_exit.png" Stretch="None" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">Exit</TextBlock>
                 </StackPanel>
             </Button>
@@ -103,7 +107,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
                 <StackPanel>
-                    <Image Source="/ico_main_btn_nocrud.png" Stretch="None" Width="64" Height="64" />
+                    <Image Source="/Icons/ico_main_btn_nocrud.png" Stretch="None" Width="64" Height="64" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">Non-CRUD</TextBlock>
                 </StackPanel>
             </Button>
