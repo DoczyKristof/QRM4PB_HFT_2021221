@@ -7,16 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ico_mainWindow.png" />
+    <None Remove="Icons\ico_main_btn_crud.png" />
+    <None Remove="Icons\ico_main_btn_nocrud.png" />
+    <None Remove="ico_main_btn_crud.png" />
     <None Remove="ico_main_btn_exit.png" />
     <None Remove="ico_main_btn_list.png" />
+    <None Remove="ico_main_btn_nocrud.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Icons\ico_mainWindow.png" />
+    <Resource Include="Icons\ico_main_btn_crud.png" />
     <Resource Include="Icons\ico_main_btn_exit.png" />
     <Resource Include="Icons\ico_main_btn_list.png" />
-    <Resource Include="ico_mainWindow.png" />
+    <Resource Include="Icons\ico_main_btn_nocrud.png" />
   </ItemGroup>
 
 </Project>

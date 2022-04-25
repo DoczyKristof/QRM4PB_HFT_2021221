@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Title="Main menu" Height="400" Width="400" ResizeMode="NoResize" Icon="Icons/ico_mainWindow.png" WindowStartupLocation="CenterScreen">
+        Title="Main menu" Height="420" Width="400" ResizeMode="NoResize" Icon="Icons/ico_mainWindow.png" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <RadialGradientBrush>
-            <GradientStop Color="#FFF3FF00" Offset="0"/>
-            <GradientStop Color="#FFF51010" Offset="1"/>
+            <GradientStop Color="Red" Offset="0"/>
+            <GradientStop Color="#FFF10707" Offset="1"/>
         </RadialGradientBrush>
     </Window.Background>
     <Grid x:Name="Grid_Main">
@@ -29,7 +29,14 @@
                 <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
             <Label Content="Pick an option:" Grid.Row="0" FontSize="14" FontWeight="SemiBold"/>
-            <Button x:Name="btn_lists" Margin="30" BorderBrush="{x:Null}" Grid.Row="1">
+            <Button x:Name="btn_lists" Margin="20" BorderBrush="{x:Null}" Grid.Row="1" Style="{StaticResource Custom_Button}">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="Red" Offset="0.9"/>
+                        <GradientStop Color="#00BBF007" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
                 <StackPanel>
                     <Image Source="Icons/ico_main_btn_list.png" Stretch="None" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">Lists</TextBlock>
@@ -43,9 +50,16 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btn_crud" Margin="30" BorderBrush="{x:Null}" Grid.Row="1">
+            <Button x:Name="btn_crud" Margin="20" BorderBrush="{x:Null}" Grid.Row="1" Style="{StaticResource Custom_Button}">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="Red" Offset="0.9"/>
+                        <GradientStop Color="#00BBF007" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
                 <StackPanel>
-                    <Image Source="Icons/ico_main_btn_crud.png" Stretch="None" />
+                    <Image Source="/ico_main_btn_crud.png" Stretch="None" Width="64" Height="64" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">CRUD</TextBlock>
                 </StackPanel>
             </Button>
@@ -58,7 +72,14 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Label x:Name="lb_clock" Content="19:59:59" Grid.Row="1" HorizontalAlignment="Right" FontSize="14" FontWeight="SemiBold"/>
-            <Button x:Name="btn_exit" Margin="30" BorderBrush="{x:Null}">
+            <Button x:Name="btn_exit" Margin="20" BorderBrush="{x:Null}" Style="{StaticResource Custom_Button}">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="Red" Offset="0.9"/>
+                        <GradientStop Color="#00BBF007" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
                 <StackPanel>
                     <Image Source="Icons/ico_main_btn_exit.png" Stretch="None" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">Exit</TextBlock>
@@ -73,9 +94,16 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Label x:Name="lb_date" Content="Hétfő ,2022.04.25" Grid.Row="1" FontSize="14" FontWeight="SemiBold"/>
-            <Button x:Name="btn_nonCrud" Margin="30" BorderBrush="{x:Null}">
+            <Button x:Name="btn_nonCrud" Margin="20" BorderBrush="{x:Null}" Style="{StaticResource Custom_Button}">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="Red" Offset="0.9"/>
+                        <GradientStop Color="#00BBF007" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
                 <StackPanel>
-                    <Image Source="Icons/ico_main_btn_nocrud.png" Stretch="None" />
+                    <Image Source="/ico_main_btn_nocrud.png" Stretch="None" Width="64" Height="64" />
                     <TextBlock FontSize="14" HorizontalAlignment="Center" FontWeight="Bold">Non-CRUD</TextBlock>
                 </StackPanel>
             </Button>

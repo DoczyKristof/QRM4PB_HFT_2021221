@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="Customs.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
     </Application.Resources>
 </Application>
