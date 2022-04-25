@@ -169,7 +169,7 @@ namespace QRM4PB_HFT_2021221.Client
                         string title = Console.ReadLine();
                         Console.WriteLine("Price: ");
                         int price = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Lenght: (format example: 2:18) ");
+                        Console.WriteLine("Length: (format example: 2:18) ");
                         string rawLength = Console.ReadLine();
                         string length = String.Format("{0} hour(s) {1} minute(s)", rawLength.Split(':')[0], rawLength.Split(':')[1]);
                         int index = 0;
