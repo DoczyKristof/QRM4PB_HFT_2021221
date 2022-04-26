@@ -27,12 +27,13 @@
         </Grid.RowDefinitions>
         <Grid x:Name="Grid_Top_Left"
               Grid.Row="0"
-              Grid.Column="0">
+              Grid.Column="0"
+              Visibility="{Binding IsLoda}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
-            <Label Content="Pick an option:" Grid.Row="0" FontSize="14" FontWeight="SemiBold"/>
+            <Label x:Name="lb_header" Content="Pick an option:" Grid.Row="0" FontSize="14" FontWeight="SemiBold"/>
             <Button x:Name="btn_lists" Margin="20" BorderBrush="{x:Null}" Grid.Row="1" Style="{StaticResource Custom_Button}">
                 <Button.Background>
                     <RadialGradientBrush>
