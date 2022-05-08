@@ -16,7 +16,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint = "Cinema")
         {
             bool isOk = false;
             do

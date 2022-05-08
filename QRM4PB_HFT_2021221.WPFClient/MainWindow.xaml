@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Cinema editor thingy 2000" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="lb_cinemas" ItemsSource="{Binding Cinemas}" SelectedItem="{Binding SelectedCinema}"
+                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
+                        <WrapPanel>
+                            <Label Content="{Binding Name}" Padding="5" Margin="5"/>
+                        </WrapPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <UniformGrid Grid.Column="0" Grid.Row="1" Columns="3">
+            <Button Content="+" Padding="5" Background="LightGreen" Foreground="White" Command="{Binding AddCinemaCommand}"/>
+            <Button Content="Delete" Padding="5" Background="Red" Foreground="White" Command="{Binding DeleteCinemaCommand}"/>
+            <Button Content="Modify" Padding="5" Background="Blue" Foreground="White" Command="{Binding EditCinemaCommand}"/>
+        </UniformGrid>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Background="AliceBlue" Content="Cinema name:"/>
+            <TextBox Background="Snow" Text="{Binding SelectedCinema.Name}" Height="30" Padding="5"/>
+        </StackPanel>
     </Grid>
 </Window>
