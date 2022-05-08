@@ -6,31 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Icons\ico_main_btn_crud.png" />
-    <None Remove="Icons\ico_main_btn_nocrud.png" />
-    <None Remove="ico_main_btn_crud.png" />
-    <None Remove="ico_main_btn_exit.png" />
-    <None Remove="ico_main_btn_list.png" />
-    <None Remove="ico_main_btn_nocrud.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-	<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.2" />
-	<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\QRM4PB_HFT_2021221.Models\QRM4PB_HFT_2021221.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Icons\ico_mainWindow.png" />
-    <Resource Include="Icons\ico_main_btn_crud.png" />
-    <Resource Include="Icons\ico_main_btn_exit.png" />
-    <Resource Include="Icons\ico_main_btn_list.png" />
-    <Resource Include="Icons\ico_main_btn_nocrud.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\QRM4PB_HFT_2021221.Models\QRM4PB_HFT_2021221.Models.csproj" />
+	</ItemGroup>
 
 </Project>
