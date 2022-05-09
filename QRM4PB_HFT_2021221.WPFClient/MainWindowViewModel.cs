@@ -18,6 +18,8 @@ namespace QRM4PB_HFT_2021221.WPFClient
         public ICommand DeleteCinemaCommand { get; set; }
         public ICommand EditCinemaCommand { get; set; }
         public ICommand AddCinemaCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
+        public ICommand NonCrudCommand { get; set; }
 
 
         public RestCollection<Cinema> Cinemas { get; set; }
@@ -31,6 +33,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
                 Cinemas = new RestCollection<Cinema>("http://localhost:20463/", "Cinema");
                 Rooms = new RestCollection<Room>("http://localhost:20463/", "Room");
                 Movies = new RestCollection<Movie>("http://localhost:20463/", "Movie");
+
 
                 AddCinemaCommand = new RelayCommand
                     (() =>
@@ -52,6 +55,20 @@ namespace QRM4PB_HFT_2021221.WPFClient
                     {
                         Cinemas.Delete(SelectedCinema.Id);
                     }, () => SelectedCinema != null
+                    );
+
+                NonCrudCommand = new RelayCommand
+                    (() =>
+                    {
+                        MessageBox.Show("fasz");
+                    }
+                    );
+
+                ExitCommand = new RelayCommand
+                    (() =>
+                    {
+                        Environment.Exit(0);    
+                    }
                     );
             }
         }
