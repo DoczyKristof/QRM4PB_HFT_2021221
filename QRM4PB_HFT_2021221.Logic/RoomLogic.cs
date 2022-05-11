@@ -60,5 +60,10 @@ namespace QRM4PB_HFT_2021221.Logic
                 .Select(x => x)
                 .Distinct();
         }
+
+        public Room ReadOne(int id)
+        {
+            return repo.ReadOne(id);
+        }
     }
 }

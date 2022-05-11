@@ -76,5 +76,10 @@ namespace QRM4PB_HFT_2021221.Logic
         {
             repo.Update(movie);
         }
+
+        public Movie ReadOne(int id)
+        {
+            return repo.ReadOne(id);
+        }
     }
 }

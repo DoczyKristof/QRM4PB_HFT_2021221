@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using QRM4PB_HFT_2021221.Endpoint.Services;
 
 namespace QRM4PB_HFT_2021221.Endpoint
 {
@@ -37,6 +38,8 @@ namespace QRM4PB_HFT_2021221.Endpoint
             services.AddTransient<IMovieRepository, MovieRepository>();
 
             services.AddTransient<CinemaDbContext, CinemaDbContext>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime.
@@ -58,6 +61,7 @@ namespace QRM4PB_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

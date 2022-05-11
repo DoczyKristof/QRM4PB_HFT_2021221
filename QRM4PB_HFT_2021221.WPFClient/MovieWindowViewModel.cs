@@ -18,7 +18,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
         {
             if (!IsInDesignMode)
             {
-                Movies = new RestCollection<Movie>("http://localhost:20463/", "Movie");
+                Movies = new RestCollection<Movie>("http://localhost:20463/", "Movie", "hub");
 
                 #region Commands
 

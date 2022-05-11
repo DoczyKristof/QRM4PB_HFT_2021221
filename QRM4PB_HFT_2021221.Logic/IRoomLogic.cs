@@ -10,6 +10,7 @@ namespace QRM4PB_HFT_2021221.Logic
     public interface IRoomLogic
     {
         //crud
+        Room ReadOne(int id);
         void Create(Room room);
         IQueryable<Room> ReadAll();
         void Update(Room room);

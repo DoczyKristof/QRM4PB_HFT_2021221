@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using QRM4PB_HFT_2021221.Endpoint.Services;
 using QRM4PB_HFT_2021221.Logic;
 using QRM4PB_HFT_2021221.Models;
 using System;
@@ -15,10 +17,12 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
     public class RoomController : ControllerBase
     {
         private IRoomLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public RoomController(IRoomLogic logic)
+        public RoomController(IRoomLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet("test")]
@@ -37,18 +41,22 @@ namespace QRM4PB_HFT_2021221.Endpoint.Controllers
         public void AddOne([FromBody] Room room)
         {
             logic.Create(room);
+            this.hub.Clients.All.SendAsync("RoomCreated", room);
         }
 
         [HttpPut]
         public void EditOne([FromBody] Room room)
         {
             logic.Update(room);
+            this.hub.Clients.All.SendAsync("RoomUpdated", room);
         }
 
         [HttpDelete("{Id}")]
         public void DeleteOne([FromRoute] int Id)
         {
+            var roomToDelete = this.logic.ReadOne(Id);
             logic.Delete(Id);
+            this.hub.Clients.All.SendAsync("RoomUpdated", roomToDelete);
         }
     }
 }

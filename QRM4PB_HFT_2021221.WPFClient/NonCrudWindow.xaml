@@ -9,14 +9,14 @@
     <Window.DataContext>
         <local:NonCrudWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="10*"/>
-        </Grid.RowDefinitions>
-        <ComboBox Margin="15"/>
-        <ListBox Margin="15" Grid.Row="1"/>
-        <Button Content="Exit" Margin="15" Padding="5" Background="Black" Foreground="White" Grid.Row="2" Click="Button_Click"/>
-    </Grid>
+    <UniformGrid Rows="8">
+        <!--<Label Background="AliceBlue" Content="CinemasThatHaveMovie"/>
+        <ListBox Background="Snow" ItemsSource="{Binding CinemasThatHaveMovie}"/>
+        <Label Background="AliceBlue" Content="RoomsThatHaveMovie"/>
+        <ListBox Background="Snow" ItemsSource="{Binding RoomsThatHaveMovie}"/>-->
+        <!--<Label Background="AliceBlue" Content="AveragePricesByTypes"/>
+        <ListBox Background="Snow" ItemsSource="{Binding AveragePricesByTypes}"/>
+        <Label Background="AliceBlue" Content="NumOfMoviesInTypes"/>
+        <ListBox Background="Snow" ItemsSource="{Binding NumOfMoviesInTypes}"/>-->
+    </UniformGrid>
 </Window>

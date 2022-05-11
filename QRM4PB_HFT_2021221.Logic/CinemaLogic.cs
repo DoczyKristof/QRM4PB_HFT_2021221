@@ -53,5 +53,10 @@ namespace QRM4PB_HFT_2021221.Logic
                 .Average(x => x.Rooms.Count())
                 );
         }
+
+        public Cinema Read(int id)
+        {
+            return repo.ReadOne(id);
+        }
     }
 }
