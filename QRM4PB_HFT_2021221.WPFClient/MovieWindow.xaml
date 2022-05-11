@@ -1,0 +1,47 @@
+﻿<Window x:Class="QRM4PB_HFT_2021221.WPFClient.MovieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
+        mc:Ignorable="d"
+        Title="Movies editorer 0.5" Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="LightBlue">
+    <Window.DataContext>
+        <local:MovieWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="lb_movies" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}"
+                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
+                        <Label Content="{Binding Title}"/>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <UniformGrid Grid.Column="0" Grid.Row="2" Columns="2">
+            <Button Content="+" Padding="5" Background="LightGreen" Foreground="White" Command="{Binding AddMovieCommand}"/>
+            <Button Content="Delete" Padding="5" Background="Red" Foreground="White" Command="{Binding DeleteMovieCommand}"/>
+
+        </UniformGrid>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Background="AliceBlue" Content="Movie title:"/>
+            <TextBox Background="Snow" Text="{Binding SelectedMovie.Title }" Height="35" Padding="5"/>
+            <Label Background="AliceBlue" Content="Movie price:"/>
+            <TextBox Background="Snow" Text="{Binding SelectedMovie.Price }" Height="35" Padding="5"/>
+            <Label Background="AliceBlue" Content="Movietype:"/>
+            <ComboBox Background="Snow" SelectedItem="{Binding SelectedMovie.Type}" Height="35" Padding="5"/>
+            <Button Content="Edit movie" Padding="5" Background="Blue" Foreground="White" Command="{Binding EditMovieCommand}"
+                    Height="35"/>
+        </StackPanel>
+    </Grid>
+</Window>

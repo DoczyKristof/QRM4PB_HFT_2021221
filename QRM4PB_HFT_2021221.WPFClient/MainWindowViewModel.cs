@@ -15,112 +15,52 @@ namespace QRM4PB_HFT_2021221.WPFClient
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        public ICommand DeleteCinemaCommand { get; set; }
-        public ICommand EditCinemaCommand { get; set; }
-        public ICommand AddCinemaCommand { get; set; }
-        public ICommand ExitCommand { get; set; }
+        public ICommand CinemaCommand { get; set; }
+        public ICommand RoomCommand { get; set; }
+        public ICommand MovieCommand { get; set; }
         public ICommand NonCrudCommand { get; set; }
-
-
-        public RestCollection<Cinema> Cinemas { get; set; }
-        public RestCollection<Room> Rooms { get; set; }
-        public RestCollection<Movie> Movies { get; set; }
+        public ICommand ExiCommand { get; set; }
 
         public MainWindowViewModel()
         {
-            if (!IsInDesignMode)
-            {
-                Cinemas = new RestCollection<Cinema>("http://localhost:20463/", "Cinema");
-                Rooms = new RestCollection<Room>("http://localhost:20463/", "Room");
-                Movies = new RestCollection<Movie>("http://localhost:20463/", "Movie");
+            #region Commands
 
-
-                AddCinemaCommand = new RelayCommand
+            CinemaCommand = new RelayCommand
                     (() =>
                     {
-                        Cinemas.Add(new Cinema()
-                        { Name = "*Give it a name*" });
+                        _ = new CinemaWindow().ShowDialog();
                     }
                     );
 
-                EditCinemaCommand = new RelayCommand
+            RoomCommand = new RelayCommand
                     (() =>
                     {
-                        Cinemas.Update(SelectedCinema);
-                    }, () => SelectedCinema != null
-                    );
-
-                DeleteCinemaCommand = new RelayCommand
-                    (() =>
-                    {
-                        Cinemas.Delete(SelectedCinema.Id);
-                    }, () => SelectedCinema != null
-                    );
-
-                NonCrudCommand = new RelayCommand
-                    (() =>
-                    {
-                        MessageBox.Show("fasz");
+                        _ = new RoomWindow().ShowDialog();
                     }
                     );
 
-                ExitCommand = new RelayCommand
+            MovieCommand = new RelayCommand
                     (() =>
                     {
-                        Environment.Exit(0);    
+                        _ = new MovieWindow().ShowDialog();
                     }
                     );
-            }
-        }
 
-        #region Properties
-
-        private Cinema _selectedCinema;
-
-        public Cinema SelectedCinema
-        {
-            get { return _selectedCinema; }
-            set 
-            {
-                if (value != null) 
-                {
-                    //SetProperty(ref _selectedCinema, value);
-                    _selectedCinema = new Cinema()
+            NonCrudCommand = new RelayCommand
+                    (() =>
                     {
-                        Name = value.Name,
-                        Id = value.Id
-                    };
-                    OnPropertyChanged();
-                    (DeleteCinemaCommand as RelayCommand).NotifyCanExecuteChanged();
-                    (EditCinemaCommand as RelayCommand).NotifyCanExecuteChanged();
-                }
-            }
-        }
+                        _ = new NonCrudWindow().ShowDialog();
+                    }
+                    );
 
-        private Room _selectedRoom;
-        public Room SelectedRoom
-        {
-            get { return _selectedRoom; }
-            set { SetProperty(ref _selectedRoom, value); }
+            ExiCommand = new RelayCommand
+                    (() =>
+                    {
+                        Environment.Exit(0);
+                    }
+                    );
 
-        }
-
-        private Movie _selectedMovie;
-        public Movie SelectedMovie
-        {
-            get { return _selectedMovie; }
-            set { SetProperty(ref _selectedMovie, value); }
-        }
-
-        #endregion
-
-        public static bool IsInDesignMode
-        {
-            get
-            {
-                var prop = DesignerProperties.IsInDesignModeProperty;
-                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
-            }
+            #endregion
         }
     }
 }

@@ -20,7 +20,7 @@ namespace QRM4PB_HFT_2021221.Logic
         //CRUD
         public void Create(Room room)
         {
-            if (room.RoomNumber > 0)
+            if (room.RoomNumber != 0)
             {
                 repo.Create(room);
             }

@@ -1,0 +1,44 @@
+﻿<Window x:Class="QRM4PB_HFT_2021221.WPFClient.CinemaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
+        mc:Ignorable="d"
+          Title="Cinema modifier stuff 42069" Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="ForestGreen">
+    <Window.DataContext>
+        <local:CinemaWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="190*"/>
+        <RowDefinition Height="200*"/>
+        <RowDefinition Height="45*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <ListBox x:Name="lb_movies" ItemsSource="{Binding Cinemas}" SelectedItem="{Binding SelectedCinema}"
+                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
+                        <Label Content="{Binding Name}"/>
+                    </Border>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    <UniformGrid Grid.Column="0" Grid.Row="2" Columns="2">
+        <Button Content="+" Padding="5" Background="LightGreen" Foreground="White" Command="{Binding AddCinemaCommand}"/>
+        <Button Content="Delete" Padding="5" Background="Red" Foreground="White" Command="{Binding DeleteCinemaCommand}"/>
+
+    </UniformGrid>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Background="AliceBlue" Content="Cinema name:"/>
+            <TextBox Background="Snow" Text="{Binding SelectedCinema.Name }" Height="35" Padding="5"/>
+            <Button Content="Edit cinema name" Padding="5" Background="Blue" Foreground="White" Command="{Binding EditCinemaCommand}"
+                    Height="35"/>
+        </StackPanel>
+    </Grid>
+</Window>
