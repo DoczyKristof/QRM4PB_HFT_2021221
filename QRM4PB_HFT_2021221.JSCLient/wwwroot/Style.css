@@ -1,0 +1,48 @@
+﻿table {
+    width: 100%;
+}
+
+html {
+    background-color: orangered;
+    font-family: 'Base 05';
+    color: antiquewhite;
+}
+
+th, #cinemaformdiv, h1 {
+    background-color: black;
+}
+
+h1 {
+    padding: 25px;
+    text-align: center;
+}
+
+td, th {
+    border: 3px outset black;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+#cinemaformdiv {
+    padding: 35px;
+    width: max-content;
+}
+
+.deletebtn {
+    padding: 2px;
+    background-color: red;
+}
+
+.editbtn {
+    padding: 2px;
+    background-color: blue;
+    color: whitesmoke;
+}
+
+#updatecinemaformdiv {
+    visibility: collapse;
+    background-color: black;
+    padding: 35px;
+    width: max-content;
+}
