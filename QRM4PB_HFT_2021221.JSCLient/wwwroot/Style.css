@@ -24,7 +24,7 @@ td, th {
     padding: 5px;
 }
 
-tr:hover {
+tbody tr:hover {
     background-color: gold;
     color: black;
 }
