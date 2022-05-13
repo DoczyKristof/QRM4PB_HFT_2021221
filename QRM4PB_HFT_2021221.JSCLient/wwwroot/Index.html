@@ -14,14 +14,14 @@
         <label>Number of available rooms:</label> <br />
         <input type="number" id="numofrooms" disabled /><br />
         <label style="color: red; font-size: 8px">not supported</label><br /> <br />
-        <button type="button" onclick="create()">Add cinema</button>
+        <button type="button" style="background-color: lightgreen;" onclick="create()">Add cinema</button>
     </div>
     <br />
 
     <div id="updatecinemaformdiv">
         <label>Cinema name:</label> <br />
         <input type="text" id="cinemanametoupdate" /> <br /> <br />
-        <button type="button" onclick="update()">Update cinema</button> <br /> <br />
+        <button type="button" class="editbtn" onclick="update()">Update cinema</button> <br /> <br />
     </div>
 
     <table>
@@ -37,7 +37,31 @@
         </tbody>
     </table>
 
+    <br />
+
+    <h1>Statistics</h1>
+    <br />
+    <div id="statarea">
+        <br />
+    </div>
+
+    <div id="statarea2">
+        <br />
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cinemas that are playing movies right now</th>
+                </tr>
+            </thead>
+            <tbody id="moviearea">
+            </tbody>
+        </table>
+    </div>
+
     <script src="Script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="signalr.js"></script>
 </body>
 </html>

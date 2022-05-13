@@ -1,12 +1,15 @@
 ﻿let cinemas = []
 let connection
 let cinemaUpdate
+let cinemashavemovie = []
+let roomswithmovies = []
+let avgprice
 
 getdata()
 setupSignalR()
 
 function setupSignalR() {
-    connection = new signalr.HubConnectionBuilder()
+    connection = new signalR.HubConnectionBuilder()
         .withUrl("http://localhost:5726/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
@@ -47,6 +50,30 @@ async function getdata() {
             console.log(list)
             display()
         })
+
+    await fetch('http://localhost:20463/stat/AverageMoviePrice')
+        .then(x => x.json())
+        .then(result => {
+            avgprice = result
+            console.log(avgprice)
+            displaystat()
+        })
+
+    await fetch('http://localhost:20463/stat/CinemasThatHaveMovie')
+        .then(x => x.json())
+        .then(result => {
+            cinemashavemovie = result
+            console.log(cinemashavemovie)
+            displaystat()
+        })
+
+    await fetch('http://localhost:20463/stat/RoomsThatHaveMovie')
+        .then(x => x.json())
+        .then(result => {
+            roomswithmovies = result
+            console.log(roomswithmovies)
+            displaystat()
+        })
 }
 
 async function start() {
@@ -74,14 +101,32 @@ function display() {
     )
 }
 
+function displaystat() {
+    document.getElementById('statarea').innerHTML = null
+    document.getElementById('statarea').innerHTML +=
+        "<p>Average movie price: " + avgprice + "HUF</p><br />"
+
+    document.getElementById('statarea2').innerHTML = null
+    document.getElementById('statarea2').innerHTML +=
+        "<p>Number of rooms playing movies: " + roomswithmovies.length + "</p><br />"
+
+    document.getElementById('moviearea').innerHTML = null
+    cinemashavemovie.forEach(
+        (cinema) => {
+            console.log(cinema)
+            document.getElementById('moviearea').innerHTML +=
+                "<tr><td>" + cinema.name + "</td></tr>"
+        })
+}
+
 function create() {
     let name = document.getElementById('cinemaname').value
 
     //let numofrooms = document.getElementById('numofrooms').value
     //let index = 0
     //var array = []
-    //while (index < numofrooms + 1) {
-    //    array.push(Room.call(RoomNumber = index++));
+    //while (index < numofrooms) {
+    //    array.push(Room.call(Rindex++));
     //}
 
 
@@ -106,24 +151,49 @@ function create() {
         })
 }
 
-function remove(id) {
-    alert("Cinema number " + id + " will be deleted")
 
-    fetch('http://localhost:20463/cinema/' + id, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: null
-    })
-        .then(response => response)
-        .then(data => {
-            console.log('Success:', data);
-            getdata()
+//function createRooms(roomNumber, cinemaid) {
+//    //let numofrooms = document.getElementById('numofrooms').value
+
+//    fetch('http://localhost:20463/Room', {
+//        method: 'POST',
+//        headers: {
+//            'Content-Type': 'application/json',
+//        },
+//        body: JSON.stringify(
+//            {
+//                RoomNumber = roomNumber,
+//                CinemaId = cinemaid
+//            }),
+//    })
+//        .then(response => response)
+//        .then(data => {
+//        })
+//        .catch((error) => {
+//            console.error('Error:', error);
+//        })
+//}
+
+function remove(id) {
+    if (confirm("Cinema number " + id + " will be deleted")) {
+        fetch('http://localhost:20463/cinema/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: null
         })
-        .catch((error) => {
-            console.error('Error:', error);
-        })
+            .then(response => response)
+            .then(data => {
+                console.log('Success:', data);
+                getdata()
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            })
+    } else {
+        return
+    }
 }
 
 function edit(id) {
@@ -158,6 +228,12 @@ function update() {
 }
 
 
+function changePage(page) {
+    window.location.href = page
+}
+
+
 //function Room() {
 //    this.RoomNumber = ''
 //}
+

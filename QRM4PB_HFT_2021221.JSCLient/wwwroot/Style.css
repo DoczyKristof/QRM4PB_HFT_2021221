@@ -24,6 +24,11 @@ td, th {
     padding: 5px;
 }
 
+tr:hover {
+    background-color: gold;
+    color: black;
+}
+
 #cinemaformdiv {
     padding: 35px;
     width: max-content;
