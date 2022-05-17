@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Title="Féléves wpf thingy 2000" Height="450" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
+        Height="450" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <UniformGrid Rows="5" Margin="50">
-        <Button Content="Cinema editor" Padding="5" Background="DarkGoldenrod" Foreground="White" Command="{Binding CinemaCommand}"/>
-        <Button Content="Rooms modifier" Padding="5" Background="DeepPink" Foreground="White" Command="{Binding RoomCommand}"/>
-        <Button Content="Movies redoer" Padding="5" Background="Green" Foreground="White" Command="{Binding MovieCommand}"/>
-        <Button Content="Not so fun fun facts" Padding="5" Background="Blue" Foreground="White" Command="{Binding NonCrudCommand}"/>
-        <Button Content="Run, just leave" Padding="5" Background="Black" Foreground="White" Command="{Binding ExiCommand}"/>
+        <Button Content="Cinema" Padding="5" Background="DarkGoldenrod" Foreground="White" Command="{Binding CinemaCommand}"/>
+        <Button Content="Room" Padding="5" Background="DeepPink" Foreground="White" Command="{Binding RoomCommand}"/>
+        <Button Content="Movie" Padding="5" Background="Green" Foreground="White" Command="{Binding MovieCommand}"/>
+        <Button Content="Stats" Padding="5" Background="Blue" Foreground="White" Command="{Binding NonCrudCommand}"/>
+        <Button Content="Leave" Padding="5" Background="Black" Foreground="White" Command="{Binding ExiCommand}"/>
     </UniformGrid>
 </Window>

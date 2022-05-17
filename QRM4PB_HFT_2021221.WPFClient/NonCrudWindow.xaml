@@ -5,18 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Title="Not so fun fun facts" Height="450" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
+        Height="450" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
     <Window.DataContext>
         <local:NonCrudWindowViewModel/>
     </Window.DataContext>
     <UniformGrid Rows="8">
-        <!--<Label Background="AliceBlue" Content="CinemasThatHaveMovie"/>
-        <ListBox Background="Snow" ItemsSource="{Binding CinemasThatHaveMovie}"/>
-        <Label Background="AliceBlue" Content="RoomsThatHaveMovie"/>
-        <ListBox Background="Snow" ItemsSource="{Binding RoomsThatHaveMovie}"/>-->
-        <!--<Label Background="AliceBlue" Content="AveragePricesByTypes"/>
-        <ListBox Background="Snow" ItemsSource="{Binding AveragePricesByTypes}"/>
-        <Label Background="AliceBlue" Content="NumOfMoviesInTypes"/>
-        <ListBox Background="Snow" ItemsSource="{Binding NumOfMoviesInTypes}"/>-->
+        
     </UniformGrid>
 </Window>

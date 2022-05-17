@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-          Title="Cinema modifier stuff 42069" Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="ForestGreen">
+        Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="ForestGreen">
     <Window.DataContext>
         <local:CinemaWindowViewModel/>
     </Window.DataContext>
@@ -20,7 +20,7 @@
         <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <ListBox x:Name="lb_movies" ItemsSource="{Binding Cinemas}" SelectedItem="{Binding SelectedCinema}"
-                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3">
+                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="2">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <Border BorderBrush="DarkGoldenrod" BorderThickness="1">

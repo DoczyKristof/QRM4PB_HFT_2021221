@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Title="Room editor thingy 107" Height="450" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="Blue">
+        Height="450" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="Blue">
     <Window.DataContext>
         <local:RoomWindowViewModel/>
     </Window.DataContext>
