@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="LightBlue">
+        Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="LightBlue" Icon="/icons8-database-options-50.png">
     <Window.DataContext>
         <local:MovieWindowViewModel/>
     </Window.DataContext>
@@ -25,9 +25,9 @@
                     <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
                         <WrapPanel>
                             <Label Content="{Binding Title}"/>
-                            <Label Content=" (in room"/>
-                            <Label Content="{Binding RoomId}"/>
-                            <Label Content=")"/>
+                            <Label Foreground="DarkBlue" Content=" |   in room"/>
+                            <Label Foreground="DarkBlue" Content="{Binding RoomId}"/>
+                            <Label Foreground="DarkBlue" Content="|"/>
                         </WrapPanel>
                     </Border>
                 </DataTemplate>

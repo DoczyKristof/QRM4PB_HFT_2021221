@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Height="600" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
+        Height="600" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red" Icon="/icons8-database-options-50.png">
     <Window.DataContext>
         <local:NonCrudWindowViewModel/>
     </Window.DataContext>
