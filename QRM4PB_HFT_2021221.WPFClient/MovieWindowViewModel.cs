@@ -19,6 +19,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
             if (!IsInDesignMode)
             {
                 Movies = new RestCollection<Movie>("http://localhost:20463/", "Movie", "hub");
+                Rooms = new RestCollection<Room>("http://localhost:20463/", "Room", "hub");
 
                 #region Commands
 
@@ -29,24 +30,34 @@ namespace QRM4PB_HFT_2021221.WPFClient
                         {
                             Title = SelectedMovie.Title,
                             Price = SelectedMovie.Price,
-                            Type = SelectedMovie.Type
+                            Type = SelectedMovie.Type,
+                            Length = SelectedMovie.Length,
+                            RoomId = SelectedRoom.Id
                         });
                     });
                 DeleteMovieCommand = new RelayCommand
                     (() =>
                     {
                         Movies.Delete(SelectedMovie.Id);
-                        _selectedMovie = null;
-                        (EditMovieCommand as RelayCommand).NotifyCanExecuteChanged();
-                    }, () => SelectedMovie != null
+                        SelectedMovie = new Movie();
+                        //(EditMovieCommand as RelayCommand).NotifyCanExecuteChanged();
+                    }, () => SelectedMovie.Title != null &&
+                            SelectedMovie.Price != null &&
+                            SelectedMovie.Length != null
                     );
                 EditMovieCommand = new RelayCommand
                     (() =>
                     {
+                        SelectedMovie.RoomId = SelectedRoom.Id;
                         Movies.Update(SelectedMovie);
-                    }, () => SelectedMovie != null
+                    }, () => SelectedMovie.Title != null &&
+                            SelectedMovie.Price != null &&
+                            SelectedMovie.Length != null &&
+                            SelectedMovie.RoomId != 0 &&
+                            SelectedRoom != null
                     );
 
+                SelectedRoom = new Room();
                 SelectedMovie = new Movie();
 
                 #endregion
@@ -57,6 +68,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
         #region Properties
 
         public RestCollection<Movie> Movies { get; set; }
+        public RestCollection<Room> Rooms { get; set; }
 
         public ICommand AddMovieCommand { get; set; }
         public ICommand DeleteMovieCommand { get; set; }
@@ -74,13 +86,25 @@ namespace QRM4PB_HFT_2021221.WPFClient
                     {
                         Title = value.Title,
                         Price = value.Price,
+                        Length = value.Length,
                         Type = value.Type,
-                        Id = value.Id
+                        Id = value.Id,
+                        RoomId = value.RoomId
                     };
                 }
                 OnPropertyChanged();
                 (DeleteMovieCommand as RelayCommand).NotifyCanExecuteChanged();
                 (EditMovieCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        private Room _selectedRoom;
+        public Room SelectedRoom
+        {
+            get { return _selectedRoom; }
+            set
+            {
+                SetProperty(ref _selectedRoom, value);
             }
         }
 

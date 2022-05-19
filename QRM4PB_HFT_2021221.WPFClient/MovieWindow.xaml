@@ -19,11 +19,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="lb_movies" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}"
-                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="2">
+                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
-                        <Label Content="{Binding Title}"/>
+                        <WrapPanel>
+                            <Label Content="{Binding Title}"/>
+                            <Label Content=" (in room"/>
+                            <Label Content="{Binding RoomId}"/>
+                            <Label Content=")"/>
+                        </WrapPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -38,8 +43,28 @@
             <TextBox Background="Snow" Text="{Binding SelectedMovie.Title }" Height="35" Padding="5"/>
             <Label Background="AliceBlue" Content="Movie price:"/>
             <TextBox Background="Snow" Text="{Binding SelectedMovie.Price }" Height="35" Padding="5"/>
+            <Label Background="AliceBlue" Content="Movie length (format: x hours y minutes):"/>
+            <TextBox Background="Snow" Text="{Binding SelectedMovie.Length }" Height="35" Padding="5"/>
             <Label Background="AliceBlue" Content="Movietype:"/>
-            <ComboBox Background="Snow" SelectedItem="{Binding SelectedMovie.Type}" Height="35" Padding="5"/>
+            <ComboBox Background="Snow" Text="{Binding SelectedMovie.Type}" Height="35" Padding="5">
+                <ComboBoxItem>Action</ComboBoxItem>
+                <ComboBoxItem>Comedy</ComboBoxItem>
+                <ComboBoxItem>Drama</ComboBoxItem>
+                <ComboBoxItem>Thriller</ComboBoxItem>
+                <ComboBoxItem>Fantasy</ComboBoxItem>
+                <ComboBoxItem>Horror</ComboBoxItem>
+                <ComboBoxItem>Mystery</ComboBoxItem>
+                <ComboBoxItem>Romance</ComboBoxItem>
+            </ComboBox>
+            <Label Background="AliceBlue" Content="Choose a room:"/>
+            <ComboBox Background="Snow" SelectedItem="{Binding SelectedRoom}" Height="35" Padding="5"
+                      ItemsSource="{Binding Rooms}" SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ComboBoxItem Content="{Binding Id}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Content="Edit movie" Padding="5" Background="Blue" Foreground="White" Command="{Binding EditMovieCommand}"
                     Height="35"/>
         </StackPanel>
