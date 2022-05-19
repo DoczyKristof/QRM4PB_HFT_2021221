@@ -21,7 +21,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
             {
                 Rooms = new RestCollection<Room>("http://localhost:20463/", "room", "hub");
                 Cinemas = new RestCollection<Cinema>("http://localhost:20463/", "cinema", "hub");
-                
+
                 #region Commands
 
                 AddRoomCommand = new RelayCommand
@@ -30,7 +30,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
                        Rooms.Add(new Room()
                        {
                            RoomNumber = SelectedRoom.RoomNumber,
-                           CinemaId = SelectedRoom.Id
+                           CinemaId = SelectedCinema.Id
                        });
                    }
                    );
@@ -38,21 +38,23 @@ namespace QRM4PB_HFT_2021221.WPFClient
                 EditRoomCommand = new RelayCommand
                     (() =>
                     {
+                        SelectedRoom.CinemaId = SelectedCinema.Id;
                         Rooms.Update(SelectedRoom);
-                    }, () => SelectedRoom != null
+                    }, () => SelectedRoom != null && SelectedRoom.RoomNumber != 0 && SelectedCinema != null
                     );
 
                 DeleteRoomCommand = new RelayCommand
                     (() =>
                     {
                         Rooms.Delete(SelectedRoom.Id);
-                        _selectedRoom = null;
-                        (DeleteRoomCommand as RelayCommand).NotifyCanExecuteChanged();
-                    }, () => SelectedRoom != null
+                        SelectedRoom = new Room();
+                        //(DeleteRoomCommand as RelayCommand).NotifyCanExecuteChanged();
+                        //(EditRoomCommand as RelayCommand).NotifyCanExecuteChanged();
+                    }, () => SelectedRoom != null && SelectedRoom.RoomNumber != 0
                     );
 
+                SelectedCinema = new Cinema();
                 SelectedRoom = new Room();
-
                 #endregion
             }
         }
@@ -88,6 +90,16 @@ namespace QRM4PB_HFT_2021221.WPFClient
             }
         }
 
+        private Cinema _selectedCinema;
+        public Cinema SelectedCinema
+        {
+            get { return _selectedCinema; }
+            set
+            {
+                SetProperty(ref _selectedCinema, value);
+            }
+        }
+
         #endregion
 
 
@@ -99,6 +111,5 @@ namespace QRM4PB_HFT_2021221.WPFClient
                 return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
-
     }
 }

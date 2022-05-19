@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Height="450" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="Blue">
+        Height="450" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="Cyan">
     <Window.DataContext>
         <local:RoomWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="190*"/>
-            <RowDefinition Height="200*"/>
-            <RowDefinition Height="45*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="lb_rooms" ItemsSource="{Binding SelectedRooms}" SelectedItem="{Binding SelectedRoom}"
-                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3">
+        <ListBox x:Name="lb_rooms" ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedRoom}"
+                 HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
-                        <Label Content="{Binding RoomNumber}"/>
+                        <WrapPanel>
+                            <Label Content="{Binding RoomNumber}"/>
+                            <Label Content=" at cinema number "/>
+                            <Label Content="{Binding CinemaId}"/>
+                        </WrapPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -36,11 +39,19 @@
         </UniformGrid>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Label Background="AliceBlue" Content="Room number:"/>
-            <TextBox Background="Snow" Text="{Binding SelectedRoom.RoomNumber}" Height="35" Padding="5"/>
-            <Label Background="AliceBlue" Content="Cinema it belongs to:"/>
-            <ComboBox Height="35" SelectedItem="{Binding SelectedRoom.Cinema.Name}" ItemsSource="{Binding Cinemas}"/>
-            <Button Content="Edit room number" Padding="5" Background="Blue" Foreground="White" Command="{Binding EditRoomCommand}"
+            <TextBox x:Name="tb" Background="Snow" Text="{Binding SelectedRoom.RoomNumber}" Height="35" Padding="5"/>
+            <Label Background="AliceBlue" Content="Choose a cinema:"/>
+            <ComboBox Height="35" SelectedItem="{Binding SelectedCinema}"
+                      ItemsSource="{Binding Cinemas}" SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ComboBoxItem Content="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Content="Edit room" Padding="5" Background="Blue" Foreground="White" Command="{Binding EditRoomCommand}"
                     Height="35"/>
+            <Label Content="Do not set room number to 0, app will crash"/>
         </StackPanel>
     </Grid>
 </Window>

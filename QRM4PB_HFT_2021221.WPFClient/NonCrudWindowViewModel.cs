@@ -11,20 +11,22 @@ namespace QRM4PB_HFT_2021221.WPFClient
 {
     class NonCrudWindowViewModel
     {
-        public RestCollection<IEnumerable<Cinema>> CinemasThatHaveMovie { get; set; }
-        //public RestCollection<IEnumerable<Room>> RoomsThatHaveMovie { get; set; }
-        //public RestCollection<IEnumerable<KeyValuePair<MovieType, double>>> AveragePricesByTypes { get; set; }
-        //public RestCollection<IEnumerable<KeyValuePair<MovieType, int>>> NumOfMoviesInTypes { get; set; }
+        public List<Cinema> CinemasThatHaveMovie { get; }
+        public List<Room> RoomsThatHaveMovie { get; }
+        public List<KeyValuePair<MovieType, double>> AveragePricesByTypes { get; }
+        public List<KeyValuePair<MovieType, int>> NumOfMoviesInTypes { get; }
+        public int AvgMoviePrice { get; }
 
 
         public NonCrudWindowViewModel()
         {
             if (!IsInDesignMode)
             {
-                CinemasThatHaveMovie = new RestCollection<IEnumerable<Cinema>>("http://localhost:20463/stat/", "CinemasThatHaveMovie");
-                //RoomsThatHaveMovie = new RestCollection<IEnumerable<Room>>("http://localhost:20463/stat/", "RoomsThatHaveMovie");
-                //AveragePricesByTypes = new RestCollection<IEnumerable<KeyValuePair<MovieType, double>>>("http://localhost:20463/stat/", "AveragePricesByTypes");
-                //NumOfMoviesInTypes = new RestCollection<IEnumerable<KeyValuePair<MovieType, int>>>("http://localhost:20463/stat/", "NumOfMoviesInTypes");
+                AvgMoviePrice = new RestService("http://localhost:20463/stat/", "AverageMoviePrice").GetSingle<int>("AverageMoviePrice");
+                CinemasThatHaveMovie = new RestService("http://localhost:20463/stat/", "CinemasThatHaveMovie").Get<Cinema>("CinemasThatHaveMovie");
+                RoomsThatHaveMovie = new RestService("http://localhost:20463/stat/", "RoomsThatHaveMovie").Get<Room>("RoomsThatHaveMovie");
+                AveragePricesByTypes = new RestService("http://localhost:20463/stat/", "RoomsThatHaveMovie").Get<KeyValuePair<MovieType, double>>("AveragePricesByTypes");
+                NumOfMoviesInTypes = new RestService("http://localhost:20463/stat/", "NumOfMoviesInTypes").Get<KeyValuePair<MovieType, int>>("NumOfMoviesInTypes");
             }
         }
 

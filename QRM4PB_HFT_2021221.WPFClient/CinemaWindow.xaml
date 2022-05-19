@@ -24,8 +24,8 @@
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <Border BorderBrush="DarkGoldenrod" BorderThickness="1">
-                        <Label Content="{Binding Name}"/>
-                    </Border>
+                    <Label Content="{Binding Name}"/>
+                </Border>
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>

@@ -5,11 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QRM4PB_HFT_2021221.WPFClient"
         mc:Ignorable="d"
-        Height="450" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
+        Height="600" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Red">
     <Window.DataContext>
         <local:NonCrudWindowViewModel/>
     </Window.DataContext>
-    <UniformGrid Rows="8">
-        
-    </UniformGrid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Background="Black" Text="Statistics" TextAlignment="Center" Padding="10" 
+                   FontWeight="ExtraBlack" FontSize="16" Foreground="Snow"
+                   Grid.Row="0"/>
+        <WrapPanel Grid.Row="1">
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="Average price of a movie: " />
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="{Binding AvgMoviePrice}"/>
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="Ft"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2">
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="Number of rooms that plays movies: " />
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="{Binding RoomsThatHaveMovie.Count }"/>
+        </WrapPanel>
+        <StackPanel Grid.Row="3">
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="Cinemas that plays movies: " 
+                   BorderBrush="Black" BorderThickness="2"/>
+            <ListBox ItemsSource="{Binding CinemasThatHaveMovie}" Height="110" HorizontalContentAlignment="Stretch" Background="{x:Null}" 
+                     BorderBrush="Black" BorderThickness="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Snow" BorderThickness="2">
+                            <Label Content="{Binding Name}" Foreground="Snow"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="Number of movies by types: " 
+                   BorderBrush="Black" BorderThickness="2"/>
+            <ListBox ItemsSource="{Binding NumOfMoviesInTypes}" Height="110" HorizontalContentAlignment="Stretch" Background="{x:Null}" 
+                     BorderBrush="Black" BorderThickness="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Snow" BorderThickness="2">
+                            <WrapPanel>
+                                <Label Content="{Binding Key}" Foreground="Snow"/>
+                                <Label Content=": " Foreground="Snow"/>
+                                <Label Content="{Binding Value}" Foreground="Snow"/>
+                            </WrapPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5">
+            <Label FontSize="14" FontWeight="ExtraBlack" Foreground="Snow" Content="Average movie prices by types: " 
+                   BorderBrush="Black" BorderThickness="2"/>
+            <ListBox ItemsSource="{Binding AveragePricesByTypes}" Height="110" HorizontalContentAlignment="Stretch" Background="{x:Null}" 
+                     BorderBrush="Black" BorderThickness="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Snow" BorderThickness="2">
+                            <WrapPanel>
+                                <Label Content="{Binding Key}" Foreground="Snow"/>
+                                <Label Content=": " Foreground="Snow"/>
+                                <Label Content="{Binding Value}" Foreground="Snow"/>
+                                <Label Content=" Ft" Foreground="Snow"/>
+                            </WrapPanel>
+                        </Border>
+                        </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
 </Window>

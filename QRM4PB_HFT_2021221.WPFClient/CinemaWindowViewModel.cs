@@ -34,15 +34,15 @@ namespace QRM4PB_HFT_2021221.WPFClient
                     (() =>
                     {
                         Cinemas.Delete(SelectedCinema.Id);
-                        _selectedCinema = null;
+                        SelectedCinema = new Cinema();
                         (EditCinemaCommand as RelayCommand).NotifyCanExecuteChanged();
-                    }, () => SelectedCinema != null
+                    }, () => SelectedCinema != null && SelectedCinema.Name != null
                     );
                 EditCinemaCommand = new RelayCommand
                     (() =>
                     {
                         Cinemas.Update(SelectedCinema);
-                    }, () => SelectedCinema != null
+                    }, () => SelectedCinema != null && SelectedCinema.Name != null
                     );
 
                 SelectedCinema = new Cinema();
@@ -72,7 +72,7 @@ namespace QRM4PB_HFT_2021221.WPFClient
                     {
                         Name = value.Name,
                         Id = value.Id
-                    }; 
+                    };
                 }
                 //SetProperty(ref _selectedCinema, value);
                 OnPropertyChanged();
